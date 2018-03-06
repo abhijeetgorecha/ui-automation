@@ -1,0 +1,1 @@
+java -jar integrity-ui-automation-tests-2018.1-SNAPSHOT.jar -suite "KeyDrivenTest.xml"

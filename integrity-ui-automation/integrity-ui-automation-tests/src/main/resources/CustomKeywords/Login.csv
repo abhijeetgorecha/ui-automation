@@ -1,0 +1,4 @@
+S.No.,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,LoginPage,LaunchApplication,,,,,,,,,,,,,,,,,,
+2,,LoginPage,EnterCredentials,,,USER_ID,ted,PASSWORD,ted,,,,,,,,,,,,
+3,,CustomKeywords,Login2,,,,,,,,,,,,,,,,,,

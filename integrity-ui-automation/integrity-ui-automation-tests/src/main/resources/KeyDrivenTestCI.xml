@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite" thread-count="2" parallel="methods">
+	<listeners>
+		<listener class-name="com.ptc.integrity.automation.core.framework.SuiteListener"/>
+	</listeners>
+	<test name="Browser_Chrome" preserve-order="true">
+		<parameter name="browser" value="REMOTE"></parameter>
+		<parameter name="envcode" value="REMOTE"></parameter>
+		<parameter name="objectFactory"
+				   value="com.ptc.integrity.automation.pageobjects.objectfactory.integrityPageObjectFactory"></parameter>
+		<classes>
+			<class
+					name="com.ptc.integrity.automation.tests.keydriven.KeyDrivenTestCasesSuiteRunnerCI" />
+		</classes>
+	</test>
+
+</suite> <!-- Keyword Driven Suite --> <!-- Keyword Driven Suite -->

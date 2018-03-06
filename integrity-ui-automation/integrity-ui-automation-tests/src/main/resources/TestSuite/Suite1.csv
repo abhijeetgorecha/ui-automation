@@ -1,0 +1,8 @@
+S.No.,SanityOrFull,TestCaseName,SKIP,TEST_ID,URL,USER_PROFILE,Location
+1,,Test_Positive,Y,Test-1,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_Positive.csv
+2,,Test_Negative,Y,Test-2,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_Negative.csv
+3,,Test_resizeBrowser,Y,Test-3,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_resizeBrowser.csv
+4,Sanity,Test_DefectValidation,N,Test-4,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_DefectValidation.csv
+5,Full,Test_RequirementValidation,N,Test-5,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_RequirementValidation.csv
+6,Full,Test_DefectListView,N,Test-6,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_DefectListView.csv
+7,Full,Test_RequirementListView,N,Test-7,LOCAL,,D:/Selenium/workspace/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_RequirementListView.csv

@@ -1,0 +1,9 @@
+S.No.,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,Step1,LoginPage,LaunchApplication,,,,,,
+2,,Step2,ItemsView,IsPageDisplayed,,,,,,
+3,,Step3,ItemsView,SelectCategory,,,Category,Requirement,,
+4,,Step4,ItemsView,SelectID,,,Date,24-08-2012,State,Active
+5,,Step5,ItemsView,ToggleListView,,,,,,
+6,,Step6,ItemsView,IsDetailViewVisible,,,ValueToValidate,Requirement ID:,,
+7,,Step7,ItemsView,ToggleListView,,,,,,
+8,,Step8,ItemsView,SelectID,,,Date,19-04-2012,State,Active
