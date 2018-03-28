@@ -43,6 +43,16 @@ public class ExecutionEngine {
 	/** The provider. */
 	final private MultiBrowserProvider provider = new MultiBrowserProvider();
 
+	public static String ignore = null;
+
+	public static void setignore(String ignoreValue){
+ignore = ignoreValue;
+	}
+
+	public static String getignore(){
+return ignore;
+	}
+
 	/**
 	 * Method to test one steps of one test case . This method also support of
 	 * multiple browser scenario in which first browser is default browser and
@@ -58,6 +68,7 @@ public class ExecutionEngine {
 
 	public Boolean executeStep(final TestStep testStep,
 			final PageObjectFactory pageObjectFactory) {
+setignore(testStep.getIgnore());
 		Boolean success = true;
 		// get method parameter from test step
 		final Object[] methodParam = null;

@@ -39,5 +39,6 @@ public class Menu extends PageObjectBase {
      */
     public Boolean NavigateTo() {
     	return getCommonFunctions().fCommonClick(String.format(webElmtNavigateTo, getDictionary().get("MenuOption")), "Navigate to "+getDictionary().get("MenuOption"));
+
     }
 }

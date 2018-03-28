@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import com.ptc.integrity.automation.core.keydriven.ExecutionEngine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.InvalidElementStateException;
@@ -111,6 +112,7 @@ public class CommonFunctions implements Cloneable{
 			driver.get(strUrl);
 		
 			System.out.println(IntegrityAutomationConstant.TEST_STEP_DESCRIPTION);
+			System.out.println(ExecutionEngine.getignore());
 			Reporter.fnWriteToHtmlOutput("fCommonLaunchEnvironemnt", strUrl+" should be launched", "URL is launched successfully", "Pass");
 			return true;
 

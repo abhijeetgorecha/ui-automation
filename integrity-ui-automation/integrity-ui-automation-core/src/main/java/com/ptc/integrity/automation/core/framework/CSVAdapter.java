@@ -49,6 +49,7 @@ public class CSVAdapter {
 	String drivercloseoption;
 	String ngTestingToolPath;
 	String dtoFilesPath;
+	String imagesPath;
 	List<String> methodList=null;
 	HashMap <String, String> orgDictionary = new HashMap<String, String>();
 	PageDictionary Dictionary = new PageDictionary();
@@ -94,6 +95,7 @@ public class CSVAdapter {
 		enviromentsPath = config.getString("ui.automation.enviroments.path");
 		ngTestingToolPath = config.getString("ui.automation.NGTestingTool.path");
 		dtoFilesPath = config.getString("ui.automation.dto.path");
+		imagesPath =  config.getString("ui.automation.images.path");
 
 
 		if (config != null && config.getBoolean("ui.mode.remoteMode")) {
@@ -142,6 +144,7 @@ public class CSVAdapter {
 		Environment.put(IntegrityAutomationConstant.DRIVERCLOSEOPTION, drivercloseoption);
 		Environment.put(IntegrityAutomationConstant.NGTESTINGTOOLPATH, ngTestingToolPath);
 		Environment.put(IntegrityAutomationConstant.DTOFILESPATH, dtoFilesPath);
+		Environment.put(IntegrityAutomationConstant.IMAGESPATH, imagesPath);
 	}
 	public boolean fetchEnvironmentDetails(){
 		try {

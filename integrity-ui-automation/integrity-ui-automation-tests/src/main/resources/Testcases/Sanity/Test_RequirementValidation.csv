@@ -1,10 +1,10 @@
-S.No.,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
-1,,Step1,LoginPage,LaunchApplication,,,,,,
-2,,Step2,ItemsView,IsPageDisplayed,,,,,,
-3,,Step3,ItemsView,SelectCategory,,,Category,Requirement,,
-4,,Step4,ItemsView,getID,ID,String,Date,2012-05-21,State,Active
-5,,Step5,Menu,NavigateTo,,,MenuOption,Documents,,
-6,,Step6,Menu,NavigateTo,,,MenuOption,Search,,
-7,,Step7,Search,SelectCategory,,,Category,Requirement,,
-8,,Step8,Search,EnterItemId,,,ItemID,out:ID,,
-9,,Step9,Search,ValidateProperty,,,PropertyName,Modified By,PropertyValue,administrator
+S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,,Step1,LoginPage,LaunchApplication,,,,,,
+2,,,Step2,ItemsView,IsPageDisplayed,,,,,,
+3,,,Step3,ItemsView,SelectCategory,,,Category,Requirement,,
+4,,,Step4,ItemsView,getID,ID,String,Date,21-05-2012,State,Active
+5,,,Step5,Menu,NavigateTo,,,MenuOption,Documents,,
+6,,,Step6,Menu,NavigateTo,,,MenuOption,Search,,
+7,,,Step7,Search,SelectCategory,,,Category,Requirement,,
+8,,,Step8,Search,EnterItemId,,,ItemID,out:ID,,
+9,,,Step9,Search,ValidateProperty,,,PropertyName,Modified By,PropertyValue,administrator

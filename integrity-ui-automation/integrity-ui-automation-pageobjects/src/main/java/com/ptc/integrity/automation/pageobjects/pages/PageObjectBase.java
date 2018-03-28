@@ -1,17 +1,25 @@
 package com.ptc.integrity.automation.pageobjects.pages;
 
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
 import com.ptc.integrity.automation.core.framework.CommonFunctions;
 import com.ptc.integrity.automation.core.framework.PageDictionary;
 import com.ptc.integrity.automation.core.framework.PageObjectFactory;
 import com.ptc.integrity.automation.core.framework.Reporting;
+
+import javax.imageio.ImageIO;
 
 public class PageObjectBase {
 	// Instance Variables
@@ -28,7 +36,7 @@ public class PageObjectBase {
 	private String webElmtAjaxLoaderIcon = "classname:=nx-ajaxLoader";
 
 	//
-	
+
 	public PageObjectBase(PageObjectFactory pageObjectFactory) {
 		Reporter = pageObjectFactory.getReporter();
 		driver = pageObjectFactory.getDriver();
@@ -42,7 +50,7 @@ public class PageObjectBase {
 	}
 
 	public PageObjectBase(PageObjectFactory pageObjectFactory,
-			String pageTitle) {
+						  String pageTitle) {
 		this(pageObjectFactory);
 		webElmtPageTitle = pageTitle;
 	}
@@ -68,35 +76,32 @@ public class PageObjectBase {
 	}
 
 	public PageDictionary getDictionary() {
-		String initialValue,formattedValue;
-		java.util.Set<String> keySet=Dictionary.keySet();
-		
-		try{
-		for(String key: keySet){
-			if(Dictionary.get(key).contains("Date:=")){
-				initialValue=Dictionary.get(key);
+		String initialValue, formattedValue;
+		java.util.Set<String> keySet = Dictionary.keySet();
+
+		try {
+			for (String key : keySet) {
+				if (Dictionary.get(key).contains("Date:=")) {
+					initialValue = Dictionary.get(key);
 //				System.out.println("KEY= "+key+"VALUE1= "+initialValue);
-				formattedValue=initialValue.split("Date:=")[1];
+					formattedValue = initialValue.split("Date:=")[1];
 //				System.out.println("VALUE2= "+formattedValue);
-				Dictionary.put(key, formattedValue);
+					Dictionary.put(key, formattedValue);
+				} else if (Dictionary.get(key).contains("{{CURRENTDATE}}")) {
+					initialValue = Dictionary.get(key);
+					DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
+					Date date = new Date();
+					formattedValue = initialValue.replace("{{CURRENTDATE}}", dateFormat.format(date));
+					Dictionary.put(key, formattedValue);
+				} else if (Dictionary.get(key).contains("{{MONTHDATE}}")) {
+					initialValue = Dictionary.get(key);
+					DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
+					Date date = new Date();
+					formattedValue = initialValue.replace("{{MONTHDATE}}", dateFormat.format(date));
+					Dictionary.put(key, formattedValue);
+				}
 			}
-			else if(Dictionary.get(key).contains("{{CURRENTDATE}}")){
-				initialValue=Dictionary.get(key);
-				DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-				Date date = new Date();
-				formattedValue=initialValue.replace("{{CURRENTDATE}}", dateFormat.format(date));
-				Dictionary.put(key, formattedValue);
-			}
-			else if(Dictionary.get(key).contains("{{MONTHDATE}}")){
-				initialValue=Dictionary.get(key);
-				DateFormat dateFormat = new SimpleDateFormat("yyyy-MM");
-				Date date = new Date();
-				formattedValue=initialValue.replace("{{MONTHDATE}}", dateFormat.format(date));
-				Dictionary.put(key, formattedValue);
-			}
-		}
-		}
-		catch(Exception e){
+		} catch (Exception e) {
 //			System.out.println("Value of corresponding key is NOT of type String");
 		}
 		return Dictionary;
@@ -127,14 +132,15 @@ public class PageObjectBase {
 //			return false;
 		}
 		Reporter.fnWriteToHtmlOutput("IsPageDisplayed", webElmtPageTitle
-				+ " should be displayed", webElmtPageTitle + " is displayed",
+						+ " should be displayed", webElmtPageTitle + " is displayed",
 				"Pass");
 
 		try {
 //			getCommonFunctions().getWaitObject(3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//*[contains(@class,'fis-start-menu-opened')]")));
 //			getCommonFunctions().fCommonClick("xpath:=//button[@ng-if='showMenuButton()']", "Menu button");
-		} catch(Exception e) {}	
-		
+		} catch (Exception e) {
+		}
+
 		return true;
 	}
 
@@ -158,7 +164,7 @@ public class PageObjectBase {
 	// * Return Values : Boolean - Depending on the success
 	// ****************************************************************************************
 	public boolean CompareCount(int originalcount, int finalcount,
-			String Operation) {
+								String Operation) {
 		String change = "";
 		if (Operation.equalsIgnoreCase("Add")) {
 			change = "increased";
@@ -213,9 +219,9 @@ public class PageObjectBase {
 
 	/**
 	 * Compare count.
-	 * 
-	 * @nx.param "initialCount", "finalCount", "operation"
+	 *
 	 * @return true, if successful
+	 * @nx.param "initialCount", "finalCount", "operation"
 	 */
 	public boolean CompareCount() {
 		int originalcount = getDictionary().getInt("initialCount");
@@ -244,9 +250,7 @@ public class PageObjectBase {
 								+ " count decreased by one", "Pass");
 				return true;
 			}
-		}
-
-		else if (Operation.equalsIgnoreCase("Equal")) {
+		} else if (Operation.equalsIgnoreCase("Equal")) {
 			if (finalcount == originalcount) {
 				getReporter().fnWriteToHtmlOutput(
 						"Comparecount",
@@ -271,7 +275,7 @@ public class PageObjectBase {
 				this.getClass().getSimpleName() + " count should " + change
 						+ " by one",
 				this.getClass().getSimpleName() + " count did not " + change
-						+ " by one (From " +originalcount+" To "+finalcount+" )", "Fail");
+						+ " by one (From " + originalcount + " To " + finalcount + " )", "Fail");
 		return false;
 	}
 
@@ -280,14 +284,62 @@ public class PageObjectBase {
 	 *
 	 * @return updated locator value
 	 */
-	public String formatSpecialCharacter(String argument){
+	public String formatSpecialCharacter(String argument) {
 		return argument.replace(">", "→");
 	}
-	
+
 	public boolean resizeBrowser() {
-		Dimension d = new Dimension(getDictionary().getInt("NewWidth"),getDictionary().getInt("NewHeight"));
+		Dimension d = new Dimension(getDictionary().getInt("NewWidth"), getDictionary().getInt("NewHeight"));
 		//Resize current window to the set dimension
-		        driver.manage().window().setSize(d);
+		driver.manage().window().setSize(d);
 		return true;
 	}
+
+	public  boolean imageToImageCompare() throws IOException {
+
+
+		BufferedImage img1 = ImageIO.read(new File(getEnvironment().get("IMAGESPATH") + File.separator + getDictionary().get("ActualImage") + ".png"));
+
+		TakesScreenshot scrShot =((TakesScreenshot)getDriver());
+		File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+		File DestFile=new File(getEnvironment().get("IMAGESPATH") + File.separator + "temp"+ File.separator + getDictionary().get("ActualImage") + "original.png");
+		FileUtils.copyFile(SrcFile, DestFile);
+		BufferedImage img2 = ImageIO.read(DestFile);
+		if (img1.getWidth() == img2.getWidth() && img1.getHeight() == img2.getHeight()) {
+			for (int x = 0; x < img1.getWidth(); x++) {
+				for (int y = 0; y < img1.getHeight(); y++) {
+					if (img1.getRGB(x, y) != img2.getRGB(x, y)){
+
+					getReporter().fnWriteToHtmlOutput(
+							"imageToImageCompare",
+							"Original and Actual("+ getDictionary().get("ActualImage") +".png)Image should match",
+							"Images doesn't match ",
+							"Fail");
+					return false;}
+				}
+
+		} }else {
+			getReporter().fnWriteToHtmlOutput(
+					"imageToImageCompare",
+					"Original and Actual("+ getDictionary().get("ActualImage") +".png)Image should match",
+					"Images doesn't match ",
+					"Fail");
+					"Fail");
+			return false;
+		}
+		getReporter().fnWriteToHtmlOutput(
+				"imageToImageCompare",
+				"Original and Actual("+ getDictionary().get("ActualImage") +"Image should match",
+				"Images match ",
+				"Pass");
+		return true;
+	}
+
+
+//	public static void main(String [] args) throws IOException {
+//		imageToImageCompare();
+//	}
+
+
+
 }

@@ -401,9 +401,9 @@ public class CSVReaderImpl {
 			csvReader.readNext();
 			for (int i = 1; i < steps.size(); i++) {
 
-				String pageObjectName = steps.get(i)[3];
+				String pageObjectName = steps.get(i)[4];
 				logPageObjectName= pageObjectName;
-				String keyword = steps.get(i)[4];
+				String keyword = steps.get(i)[5];
 				logKeywordName= keyword;
 				logCSVName=csvPath;
 
@@ -480,22 +480,23 @@ public class CSVReaderImpl {
 
 		final TestStep testStep = new TestStep();
 
-		if (steps.length > 3 && !steps[3].equalsIgnoreCase("")) {
+		if (steps.length > 4 && !steps[4].equalsIgnoreCase("")) {
 			// System.out.println(steps[1] + steps[2] + steps[3]);
-			testStep.setBrowserId(steps[1]);
+			testStep.setIgnore(steps[1]);
+			testStep.setBrowserId(steps[2]);
 			testStep.setSerialNo(Integer.parseInt(steps[0]));
 			//			IntegrityAutomationConstant.TEST_STEP_DESCRIPTION=steps[2];
-			testStep.setDescription(steps[2]);
-			testStep.setPageObjectName(steps[3]);
+			testStep.setDescription(steps[3]);
+			testStep.setPageObjectName(steps[4]);
 			//			System.out.println("page object name   #########"+steps[3]);
-			testStep.setKeyWord(steps[4]);
+			testStep.setKeyWord(steps[5]);
 			//			System.out.println("keyword name   #########"+steps[4]);
-			if (steps.length > 4) {
-				testStep.setOutputKey(steps[5]);
-				testStep.setOutputType(steps[6]);
+			if (steps.length > 5) {
+				testStep.setOutputKey(steps[6]);
+				testStep.setOutputType(steps[7]);
 
 			}
-			if (!steps[7].equalsIgnoreCase("")) {
+			if (!steps[8].equalsIgnoreCase("")) {
 				testStep.setDictonary(this.getDictionary(steps,
 						previousDictonary));
 			}
@@ -509,7 +510,7 @@ public class CSVReaderImpl {
 			final Map<String, String> previousDictonary) {
 		final int lastCellNumber = steps.length;
 		final Map<String, String> dictionary = new HashMap<String, String>();
-		for (int cell = 7; cell < lastCellNumber; cell++) {
+		for (int cell = 8; cell < lastCellNumber; cell++) {
 			if (null != steps[cell]) {
 				final String paramKey = steps[cell];
 				String paramValue = "";
@@ -537,7 +538,6 @@ public class CSVReaderImpl {
 
 			}
 			cell++;
-
 		}
 		return dictionary;
 	}

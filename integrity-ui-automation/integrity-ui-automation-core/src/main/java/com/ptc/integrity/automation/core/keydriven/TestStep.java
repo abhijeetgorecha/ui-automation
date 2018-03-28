@@ -16,6 +16,7 @@ public class TestStep {
 	private String description;
 	private Map<String, String> dictonary = new HashMap<String, String>();
 	private List<Object> params = new ArrayList<Object>();
+	private String ignore;
 
 	public Map<String, String> getDictonary() {
 		return dictonary;
@@ -48,7 +49,9 @@ public class TestStep {
 	public String getBrowserId() {
 		return browserId;
 	}
-	
+
+
+
 	public String getDescription() {
 //		description = getDictonary().get("Description");
 		if(description==null){
@@ -96,10 +99,18 @@ public class TestStep {
 
 	@Override
 	public String toString() {
-		return "TestStep [serialNo=" + serialNo + ", browserId=" + browserId +",stepDescription="+description
+		return "TestStep [serialNo=" + serialNo + ",ignore=" + ignore +",browserId=" + browserId +",stepDescription="+description
 				+ ", pageObjectName=" + pageObjectName + ", keyWord=" + keyWord
 				+ ", outputKey=" + outputKey + ", outputType=" + outputType
 				+ ", dictonary=" + dictonary + "]";
+	}
+
+	public String getIgnore() {
+		return ignore;
+	}
+
+	public void setIgnore(String ignore) {
+		this.ignore = ignore;
 	}
 
 }
