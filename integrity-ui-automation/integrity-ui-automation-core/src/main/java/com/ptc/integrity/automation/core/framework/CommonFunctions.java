@@ -295,8 +295,14 @@ public class CommonFunctions implements Cloneable{
 			//Get WebElement
 			WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
 			if (webElement == null) {
-				Reporter.fnWriteToHtmlOutput("fCommonClick: " + strObjName, "Object should be found", "Object was not found. Null value returned", "Fail");
-				return false;
+				if(ExecutionEngine.getignore().equalsIgnoreCase("Y")) {
+					Reporter.fnWriteToHtmlOutput("fCommonClick: " + strObjName, "Object should be found", "Object was not found. Null value returned", "Warning");
+					return true;
+				} else{
+					Reporter.fnWriteToHtmlOutput("fCommonClick: " + strObjName, "Object should be found", "Object was not found. Null value returned", "Fail");
+					return false;
+				}
+
 			}
 
 //			webElement = getWaitObject(10).until(ExpectedConditions.elementToBeClickable(fCommonGetObject(webElmtProp, strObjName)));

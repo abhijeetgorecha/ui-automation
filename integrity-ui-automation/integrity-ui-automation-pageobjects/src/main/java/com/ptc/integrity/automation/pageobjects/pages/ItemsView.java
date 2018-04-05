@@ -77,4 +77,6 @@ public class ItemsView extends PageObjectBase {
     	getCommonFunctions().fCommonCheckObjectExistance(String.format(webElmtDetailView, getDictionary().get("ValueToValidate")));
     	return true;
     }
+
+
 }

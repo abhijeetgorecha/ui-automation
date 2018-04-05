@@ -1,0 +1,6 @@
+S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,,Step1,LoginPage,LaunchApplication,,,,,,
+2,,,Step2,ItemsView,IsPageDisplayed,,,,,,
+3,Y,,Step3,ItemsView,SelectCategory,,,Category,ABCD,,
+3,,,Step3,ItemsView,SelectCategory,,,Category,Defect,,
+,,,,,,,,,,,
