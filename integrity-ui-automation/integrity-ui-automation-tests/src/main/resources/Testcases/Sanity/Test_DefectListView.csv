@@ -2,8 +2,8 @@ S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputTy
 1,,,Step1,LoginPage,LaunchApplication,,,,,,
 2,,,Step2,ItemsView,IsPageDisplayed,,,,,,
 3,,,Step3,ItemsView,SelectCategory,,,Category,Defect,,
-4,,,Step4,ItemsView,SelectID,,,Date,26-07-2012,State,In Development
+4,,,Step4,ItemsView,SelectID,,,Date,2012-07-23,State,In Development
 5,,,Step5,ItemsView,ToggleListView,,,,,,
-6,,,Step6,ItemsView,IsDetailViewVisible,,,ValueToValidate,Defect ID: 628,,
+6,,,Step6,ItemsView,IsDetailViewVisible,,,ValueToValidate,Defect ID: 622,,
 7,,,Step7,ItemsView,ToggleListView,,,,,,
-8,,,Step8,ItemsView,SelectID,,,Date,04-08-2012,State,Proposed
+8,,,Step8,ItemsView,SelectID,,,Date,2012-07-23,State,Assigned

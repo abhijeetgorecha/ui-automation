@@ -35,5 +35,5 @@ public class IntegrityAutomationConstant {
 	public static final String NGTESTINGTOOLPATH = "NGTESTINGTOOLPATH";
 	public static final String DTOFILESPATH = "DTOFILESPATH";
 	public static final String IMAGESPATH = "IMAGESPATH";
-
+	public static final String SUITENAME = "SUITENAME";
 }

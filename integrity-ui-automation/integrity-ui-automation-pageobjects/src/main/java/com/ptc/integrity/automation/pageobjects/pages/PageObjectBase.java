@@ -324,7 +324,6 @@ public class PageObjectBase {
 					"Original and Actual("+ getDictionary().get("ActualImage") +".png)Image should match",
 					"Images doesn't match ",
 					"Fail");
-					"Fail");
 			return false;
 		}
 		getReporter().fnWriteToHtmlOutput(

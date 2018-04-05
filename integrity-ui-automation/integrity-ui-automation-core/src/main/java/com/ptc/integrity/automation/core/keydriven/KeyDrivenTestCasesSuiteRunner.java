@@ -35,8 +35,9 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 	final private static Logger LOGGER = Logger
 			.getLogger(ExecutionEngine.class);
 	private TestStep testStep = new TestStep();
-	
-	
+	private Date testStartTime;
+	private Date testEndTime;
+
 
 	/**
 	 * 
@@ -93,12 +94,12 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 
 	/** The local driver. */
 	private final ThreadLocal<WebDriver> localDriver = new ThreadLocal<WebDriver>();
-	
+
 	private final Map<String,WebDriver> driverCache = new ConcurrentHashMap<String,WebDriver>();
 
 	/** The local reporter. */
 	private final ThreadLocal<Reporting> localReporter = new ThreadLocal<Reporting>();
-	
+
 	private final Map<String,Reporting> reporterCache = new ConcurrentHashMap<String,Reporting>();
 
 	/**
@@ -108,7 +109,7 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 	 *            test result status whether test is fail or pass .
 	 */
 	public synchronized void afterTest(final boolean testResultStatus,final String testCaseName) {
-
+		testEndTime = new Date();
 		try {
 			if (("Y").equalsIgnoreCase(config
 					.getString("ui.automation.csv.update"))) {
@@ -123,44 +124,48 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 
 			}
 			// Close Summary Report
-		//	localReporter.get().setG_iTestCaseNo(getTestNumber());
+			//	localReporter.get().setG_iTestCaseNo(getTestNumber());
 			//localReporter.get().fnCloseHtmlReport();
 			//Get Chrome console logs if test fail
 			String FilePath="";
 			if (!testResultStatus) {
-				 
+
 				WebDriver d = driverCache.get(testCaseName);
 				LogEntries logEntries = d.manage().logs().get(LogType.BROWSER);
-				 for (LogEntry entry : logEntries) {
-					 FilePath=Environment.get("HTMLREPORTSPATH")+File.separator+"ConsoleLogs";
-					 Files.createDirectories(Paths.get(FilePath));
-					 File file = new File(FilePath+File.separator+testCaseName+".txt");
-					 FileWriter fileWriter=null;
+				for (LogEntry entry : logEntries) {
+					FilePath=Environment.get("HTMLREPORTSPATH")+File.separator+"ConsoleLogs";
+					Files.createDirectories(Paths.get(FilePath));
+					File file = new File(FilePath+File.separator+testCaseName+".txt");
+					FileWriter fileWriter=null;
 					try {
 						fileWriter = new FileWriter(file,true);
 						fileWriter.write(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
-						 fileWriter.write("\r\n");
-						 fileWriter.close();
+						fileWriter.write("\r\n");
+						fileWriter.close();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
-					 
-			            System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
-			            //do something useful with the data
-			        }
-			
+
+
+					System.out.println(new Date(entry.getTimestamp()) + " " + entry.getLevel() + " " + entry.getMessage());
+					//do something useful with the data
+				}
+
 			}
 			//Chrome console logs code end
 			reporterCache.get(testCaseName).setG_iTestCaseNo(getTestNumber());
+			String testTotalTime=Reporter.fnTimeDiffference(testStartTime.getTime(), testEndTime.getTime());
 			if (!testResultStatus) {
-			reporterCache.get(testCaseName).fnCloseHtmlReport(FilePath+File.separator+testCaseName+".txt");
+				reporterCache.get(testCaseName).fnCloseHtmlReport(FilePath+File.separator+testCaseName+".txt");
+
+				xmlReport.addTestCasetoXML(testCaseName, "Fail", xmlOutputFile,testTotalTime);
 			}
 			else{
 				reporterCache.get(testCaseName).fnCloseHtmlReport("");
+				xmlReport.addTestCasetoXML(testCaseName, "Pass", xmlOutputFile,testTotalTime);
 			}				
- 			System.out.println("AfterMethod end - " + driverType);
+			System.out.println("AfterMethod end - " + driverType);
 
 		} catch (final Exception e) {
 			System.out.println("exception "
@@ -180,8 +185,9 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 	 *            test case to be executed
 	 */
 	public synchronized void beforeTest(final TestCase testCase) {
+		testStartTime = new Date();
 		PageDictionary dictonary = new PageDictionary();
- 
+
 		dictonary.put(KeywordDrivenConstant.TEST_ID,
 				testCase.getJiraId());
 		dictonary.put(KeywordDrivenConstant.TEST_NAME,
@@ -254,12 +260,12 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 				getPageObjectFactory());
 
 		// after test
-//		if(testResultStatus==false){
-//			reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Failed" , "Fail");
-//			}
-//			else{
-//				reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Passed" , "Pass");	
-//			}
+		//		if(testResultStatus==false){
+		//			reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Failed" , "Fail");
+		//			}
+		//			else{
+		//				reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Passed" , "Pass");	
+		//			}
 		afterTest(testResultStatus,testCase.getTestCaseName());
 
 	}
@@ -273,7 +279,7 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 	 */
 	private void runTestCases(final List<TestCase> testCases) {
 		final Iterator<TestCase> testIterator = testCases.iterator();
- 		while (testIterator.hasNext()) {
+		while (testIterator.hasNext()) {
 			final ExecutionEngine engine = new ExecutionEngine();
 			final TestCase testCase = testIterator.next();
 			boolean testResultStatus = false;
@@ -319,8 +325,8 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 	@Parameters({ "browser" })
 	public void testRunner(@Optional("") final String browser) {
 
-//		final CSVReaderImpl csvReader = new CSVReaderImpl(
-//				config.getString(KeywordDrivenConstant.DRIVER_SHEET_PATH),config.getString(KeywordDrivenConstant.ENVIRONMENT_SHEET_PATH));
+		//		final CSVReaderImpl csvReader = new CSVReaderImpl(
+		//				config.getString(KeywordDrivenConstant.DRIVER_SHEET_PATH),config.getString(KeywordDrivenConstant.ENVIRONMENT_SHEET_PATH));
 
 		String driverPath=null;
 		if (config.getBoolean("ui.mode.remoteMode")) {
@@ -351,12 +357,12 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 		}
 		// run sequential test cases .
 		runTestCases(sequentialTestCaseList);
-				
+
 		// submit task to run in parallel . its a blocking method which block
 		// the execution on below line until all thread get finished .
 		ThreadUtil.execute("testRunner",tasks, poolSize, 0, false);
 
-		
+
 	}
 
 }

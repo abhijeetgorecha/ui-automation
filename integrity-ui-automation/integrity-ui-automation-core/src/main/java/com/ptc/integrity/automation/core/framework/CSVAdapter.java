@@ -50,6 +50,7 @@ public class CSVAdapter {
 	String ngTestingToolPath;
 	String dtoFilesPath;
 	String imagesPath;
+	String suiteName;
 	List<String> methodList=null;
 	HashMap <String, String> orgDictionary = new HashMap<String, String>();
 	PageDictionary Dictionary = new PageDictionary();
@@ -123,6 +124,8 @@ public class CSVAdapter {
 
 		screenShotOption=config.getString("ui.automation.pass.screenshot");
 		drivercloseoption=config.getString("ui.automation.driver.close");
+		suiteName=config.getString("ui.automation.driversheet.path");
+		String[] suite=suiteName.split("TestSuite");
 
 		if(config.getBoolean("ui.automation.execution.jar")==true){
 			staticJsonPath=System.getProperty("user.dir")+File.separator+"static";
@@ -142,6 +145,7 @@ public class CSVAdapter {
 		Environment.put(IntegrityAutomationConstant.STATICJSONPATH, staticJsonPath);
 		Environment.put(IntegrityAutomationConstant.SNAPSHOTOPTION, screenShotOption);
 		Environment.put(IntegrityAutomationConstant.DRIVERCLOSEOPTION, drivercloseoption);
+		Environment.put(IntegrityAutomationConstant.SUITENAME, suite[1]);
 		Environment.put(IntegrityAutomationConstant.NGTESTINGTOOLPATH, ngTestingToolPath);
 		Environment.put(IntegrityAutomationConstant.DTOFILESPATH, dtoFilesPath);
 		Environment.put(IntegrityAutomationConstant.IMAGESPATH, imagesPath);

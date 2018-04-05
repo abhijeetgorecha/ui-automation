@@ -31,10 +31,10 @@ public class Reporting {
 	public static String stDescription;
 
 	private int g_iTestCaseNo;
-	private Date g_StartTime;
-	private Date g_EndTime;
-	private Date g_SummaryStartTime;
-	private Date g_SummaryEndTime;
+	protected Date g_StartTime;
+	protected Date g_EndTime;
+	protected Date g_SummaryStartTime;
+	protected Date g_SummaryEndTime;
 	public WebDriver driver;
 	private String driverType;
 	private PageDictionary Dictionary = null;

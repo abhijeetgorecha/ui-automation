@@ -2,8 +2,8 @@ S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputTy
 1,,,Step1,LoginPage,LaunchApplication,,,,,,
 2,,,Step2,ItemsView,IsPageDisplayed,,,,,,
 3,,,Step3,ItemsView,SelectCategory,,,Category,Requirement,,
-4,,,Step4,ItemsView,SelectID,,,Date,24-08-2012,State,Active
+4,,,Step4,ItemsView,SelectID,,,Date,2012-04-19,State,Active
 5,,,Step5,ItemsView,ToggleListView,,,,,,
-6,,,Step6,ItemsView,IsDetailViewVisible,,,ValueToValidate,Requirement ID:,,
+6,,,Step6,ItemsView,IsDetailViewVisible,,,ValueToValidate,Requirement ID: 5,,
 7,,,Step7,ItemsView,ToggleListView,,,,,,
-8,,,Step8,ItemsView,SelectID,,,Date,19-04-2012,State,Active
+8,,,Step8,ItemsView,SelectID,,,Date,2012-04-19,State,Active

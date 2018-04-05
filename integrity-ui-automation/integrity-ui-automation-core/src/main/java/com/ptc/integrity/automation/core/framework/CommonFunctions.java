@@ -581,7 +581,7 @@ public class CommonFunctions implements Cloneable{
 						System.out.println("fCommonSetValueEditBox - Failover - Setting value via JavaScript");
 						js.executeScript("arguments[0].value='"+strValue+"';var event = new Event('change');arguments[0].dispatchEvent(event);", objWebEdit);
 					} catch (Exception e1) {
-						return false;
+						return true;
 					}
 				}
 				//Validate if the value is selected successfully

@@ -3,7 +3,9 @@ package com.ptc.integrity.automation.core.keydriven;
 import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.net.InetAddress;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -27,6 +29,7 @@ import com.ptc.integrity.automation.core.framework.ConfigurationManager;
 import com.ptc.integrity.automation.core.framework.PageDictionary;
 import com.ptc.integrity.automation.core.framework.PageObjectFactory;
 import com.ptc.integrity.automation.core.framework.Reporting;
+import com.ptc.integrity.automation.core.framework.TestXML;
 
 public class KeyDrivenTestingSuiteBase {
 	final private static Logger LOGGER = Logger
@@ -49,7 +52,10 @@ public class KeyDrivenTestingSuiteBase {
 
 	protected Map<String, TestCase> testCaseMap;
 	public ArrayList<String> failCount=new ArrayList<String>();
-	
+	protected TestXML xmlReport= new TestXML(driver, driverType, Environment);
+	protected File xmlOutputFile;
+	protected Date startTime;
+	protected Date endTime;
 
 	@AfterClass(alwaysRun=true)
 	public void afterClass() {
@@ -68,6 +74,12 @@ public class KeyDrivenTestingSuiteBase {
 			// KeyDrivenTestCasesSuiteRunnerCI();
 			Reporter.setG_iTCPassed(getTestPassed());
 			Reporter.fnCloseTestSummary();
+			endTime = new Date();
+			xmlReport.addAttributesToTestSuite("tests", String.valueOf(getTestPassed()+failCount.size()), xmlOutputFile);
+			xmlReport.addAttributesToTestSuite("failures", String.valueOf(failCount.size()), xmlOutputFile);
+			xmlReport.addAttributesToTestSuite("hostname", InetAddress.getLocalHost().getHostName(), xmlOutputFile);
+			xmlReport.addAttributesToTestSuite("time", Reporter.fnTimeDiffference(startTime.getTime(), endTime.getTime()), xmlOutputFile);
+			
 		} catch (final Exception e) {
 			System.out.println("Exception " + ": " + e.toString());
 		}
@@ -86,6 +98,7 @@ public class KeyDrivenTestingSuiteBase {
 	public void beforeClass(@Optional("") final String browser,
 			@Optional("") final String runOnEnv,
 			@Optional("") final String objectFactory) {
+		startTime = new Date();
 		try {
 			driverType = browser;
 			Environment.put("CLASS_NAME", this.getClass().getSimpleName());
@@ -143,7 +156,10 @@ public class KeyDrivenTestingSuiteBase {
 			adapter.createExecutionFolders(className);
 			Reporter = new Reporting(driver, driverType, Environment);
 			Reporter.fnCreateSummaryReport(suiteType);
-
+			/////XML code???
+			String inputFile="D:\\"+Environment.get("SUITENAME")+".xml";
+			xmlOutputFile= new File(inputFile);
+			xmlReport.createXMLReport(xmlOutputFile);
 			objCommon = new CommonFunctions(driver, driverType, Environment,
 					Reporter);
 //			objCommon.fEditAndCopyStaticJsonFiles();

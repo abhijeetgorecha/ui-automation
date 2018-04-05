@@ -2,7 +2,7 @@ S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputTy
 1,,,Step1,LoginPage,LaunchApplication,,,,,,
 2,,,Step2,ItemsView,IsPageDisplayed,,,,,,
 3,,,Step3,ItemsView,SelectCategory,,,Category,Defect,,
-4,,,Step4,ItemsView,getID,ID,String,Date,24-07-2012,State,In Development
+4,,,Step4,ItemsView,getID,ID,String,Date,2012-07-24,State,In Development
 5,,,Step5,Menu,NavigateTo,,,MenuOption,Documents,,
 6,,,Step6,Menu,NavigateTo,,,MenuOption,Search,,
 7,,,Step7,Search,SelectCategory,,,Category,Defect,,
