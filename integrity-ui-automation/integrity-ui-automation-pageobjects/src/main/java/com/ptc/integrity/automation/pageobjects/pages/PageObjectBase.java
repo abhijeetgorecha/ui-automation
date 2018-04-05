@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.text.DateFormat;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
@@ -333,12 +334,6 @@ public class PageObjectBase {
 				"Pass");
 		return true;
 	}
-
-
-//	public static void main(String [] args) throws IOException {
-//		imageToImageCompare();
-//	}
-
 
 
 }

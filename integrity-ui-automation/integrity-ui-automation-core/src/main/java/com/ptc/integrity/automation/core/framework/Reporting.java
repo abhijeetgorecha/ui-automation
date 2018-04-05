@@ -562,7 +562,35 @@ public class Reporting {
 								+ snapshotRelativePath
 								+ "' alt='Screen Shot' style='width:250px;height:200px'></A></TD></TR>");
 
-			} else if (strResult.toUpperCase().equals("DONE")) {
+			} else if (strResult.toUpperCase().equals("WARNING")) {
+				strResult = "Warning";
+				// Write Results into the file
+				new PrintStream(foutStrm)
+						.println("<TR WIDTH=100%><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=5% ALIGN=CENTER><FONT FACE=VERDANA SIZE=2 COLOR=green><B>"
+								+ g_OperationCount
+								+ "</B></FONT></TD><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=10%><FONT FACE=VERDANA SIZE=2 COLOR=green>"
+								+ stepDescription
+								+ "</FONT></TD></TD><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=10%><FONT FACE=VERDANA SIZE=2 COLOR=green>"
+								+ strFunctionName
+								+ "</FONT></TD><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=12%><FONT FACE=VERDANA SIZE=2 COLOR=green>"
+								+ strExpectedValue
+								+ "</FONT></TD><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=13%><FONT FACE=VERDANA SIZE=2 COLOR=green>"
+								+ strObtainedValue
+								+ "</FONT></TD><TD BGCOLOR="
+								+ sRowColor
+								+ " WIDTH=10% ALIGN=CENTER><FONT FACE=VERDANA SIZE=2 COLOR=Green><B>"
+								+ strResult + "</B></FONT></TD></TR>");
+			}else if (strResult.toUpperCase().equals("DONE")) {
 				strResult = "Pass";
 				// Write Results into the file
 				new PrintStream(foutStrm)
