@@ -346,17 +346,19 @@ public class CSVReaderImpl {
 				String folder[] = csvPath.split("/");
 				String folderName = folder[folder.length - 2];
 				String baseResourceDir = null;
-				if (System.getProperty("user.dir").contains(
-						"integrity-ui-automation-tests")) {
-					baseResourceDir = FilenameUtils.separatorsToSystem(System
-							.getProperty("user.dir")
-							+ "\\src\\main\\resources\\");
-				} else {
-					baseResourceDir = FilenameUtils
-							.separatorsToSystem(System.getProperty("user.dir")
-									+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
-				}
-
+//				if (System.getProperty("user.dir").contains(
+//						"integrity-ui-automation-tests")) {
+//					baseResourceDir = FilenameUtils.separatorsToSystem(System
+//							.getProperty("user.dir")
+//							+ "\\src\\main\\resources\\");
+//				} else {
+//					baseResourceDir = FilenameUtils
+//							.separatorsToSystem(System.getProperty("user.dir")
+//									+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
+//				}
+				baseResourceDir = FilenameUtils
+						.separatorsToSystem(System.getProperty("user.dir")+File.separator+"integrity-ui-automation"
+								+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
 				csvPath = FilenameUtils.separatorsToSystem(baseResourceDir
 						+ "Testcases" + File.separatorChar + folderName
 						+ File.separatorChar + FilenameUtils.getName(csvPath));
