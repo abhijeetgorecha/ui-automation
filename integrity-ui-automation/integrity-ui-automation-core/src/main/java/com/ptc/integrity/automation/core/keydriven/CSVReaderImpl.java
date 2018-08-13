@@ -606,7 +606,7 @@ public class CSVReaderImpl {
 							testCase.setGroupname(steps[6]);
 
 							testCase.setWorkBookPath(steps[7]);
-							System.out.println("@@@@@@@@@@@@@@@@@ csv reader, workbook path update driver function: "+testCase.getWorkBookPath());
+							
 							final Map<String, String> previousDictonary = new HashMap<String, String>();
 							List<TestStep> testSteps = getTestStepsByPath(
 									StringUtils.trimToEmpty(testCase.getWorkBookPath()),
@@ -655,6 +655,7 @@ public class CSVReaderImpl {
 						testCase.setGroupname(steps[6]);
 
 						testCase.setWorkBookPath(steps[7]);
+						System.out.println("@@@@@@@@@@@@@@@@@ csv reader, workbook path update driver function: "+testCase.getWorkBookPath());
 						final Map<String, String> previousDictonary = new HashMap<String, String>();
 						List<TestStep> testSteps = getTestStepsByPath(
 								StringUtils.trimToEmpty(testCase.getWorkBookPath()),
