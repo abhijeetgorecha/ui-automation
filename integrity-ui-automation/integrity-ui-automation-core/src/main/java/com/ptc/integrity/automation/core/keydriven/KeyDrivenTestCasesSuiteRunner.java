@@ -339,7 +339,6 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 				config.getString(KeywordDrivenConstant.ENVIRONMENT_SHEET_PATH));
 		///////////
 		final int poolSize = config.getInt(KeywordDrivenConstant.POOL_SIZE);
-
 		// get driver object which contains all the test cases .
 		final Driver driver = csvReader.getDriver();
 		// get all batch test cases

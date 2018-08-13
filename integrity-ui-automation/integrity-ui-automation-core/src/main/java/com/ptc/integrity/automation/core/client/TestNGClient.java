@@ -72,6 +72,7 @@ public class TestNGClient {
 		configManager.setConfigPath(System.getProperty("user.dir")
 				+ File.separator + "integrity-ui-automation.properties");
 		final Configuration config = configManager.getConfig();
+		System.out.println("************* "+System.getProperty("user.dir"));
 		config.setProperty("ui.automation.root.path",
 				System.getProperty("user.dir"));
 		config.clearProperty("ui.automation.execution.jar");

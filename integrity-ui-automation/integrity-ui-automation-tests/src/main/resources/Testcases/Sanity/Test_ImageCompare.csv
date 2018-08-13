@@ -1,3 +1,3 @@
 S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
 1,,,Step1,LoginPage,LaunchApplication,,,,,,
-2,,,Step2,HomePage,imageToImageCompare,,,ActualImage,main,,
+2,,,Step2,HomePage,imageToImageCompare,,,ActualImage,Test1,,

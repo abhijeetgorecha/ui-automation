@@ -1,10 +1,12 @@
 package com.ptc.integrity.automation.core.framework;
 
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import com.ptc.integrity.automation.core.keydriven.ExecutionEngine;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.InvalidElementStateException;
@@ -24,6 +26,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.ptc.integrity.automation.core.keydriven.ExecutionEngine;
 import com.ptc.integrity.automation.core.utils.IntegrityAutomationConstant;
 
 
@@ -108,10 +111,12 @@ public class CommonFunctions implements Cloneable{
 			JavascriptExecutor js = (JavascriptExecutor)driver;
 			//Navigate to new Page
 //			js.executeScript("window.location = '" + strUrl + "'");
-			
+
 			driver.get(strUrl);
-		
+			
 			System.out.println(IntegrityAutomationConstant.TEST_STEP_DESCRIPTION);
+		
+			driver.navigate().refresh();
 			System.out.println(ExecutionEngine.getignore());
 			Reporter.fnWriteToHtmlOutput("fCommonLaunchEnvironemnt", strUrl+" should be launched", "URL is launched successfully", "Pass");
 			return true;
@@ -372,8 +377,9 @@ public class CommonFunctions implements Cloneable{
 			while (intCount<=3){
 				try {	    
 					webElement.getLocation();
-
+					
 					((JavascriptExecutor) driver).executeScript("return arguments[0].click()", webElement);
+					
 					break;	        		
 				}catch (StaleElementReferenceException e){
 					webElement = fCommonGetObject(webElmtProp,strObjName);
@@ -2056,5 +2062,25 @@ public class CommonFunctions implements Cloneable{
 						"Exception: " + e, "Fail");
 				return false;
 			}
+		}
+		
+		public WebElement expandRootElement(String rootElement) {
+			
+//			WebElement r = document
+			WebElement element = fCommonGetWebElement(rootElement, "");
+			WebElement ele = (WebElement) ((JavascriptExecutor)driver).executeScript("return arguments[0].shadowRoot", element);
+//			WebElement outer = (WebElement) ((JavascriptExecutor)driver).executeScript("return document.querySelector('.search').shadowRoot");
+//			WebElement ele = outer.findElement(By.xpath("//input"));
+			return ele;
+		}
+		
+		public Boolean AccessShadowRootElement() {
+			WebElement root = driver.findElement(By.tagName("ptcs-textfield"));
+//			WebElement ele = (WebElement) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot", root);
+			WebElement ele2 = (WebElement) ((JavascriptExecutor) driver).executeScript("return document.querySelector('ptcs-textfield[placeholder=\"Find Projects\"]').shadowRoot.querySelector('input')");
+//			WebElement ele1 =  ele2.findElement(By.tagName("input"));
+			ele2.sendKeys("Top");
+			
+			return true;
 		}
 }

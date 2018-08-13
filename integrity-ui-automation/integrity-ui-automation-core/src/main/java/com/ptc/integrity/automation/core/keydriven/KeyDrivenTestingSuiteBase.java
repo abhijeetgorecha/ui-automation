@@ -29,7 +29,7 @@ import com.ptc.integrity.automation.core.framework.ConfigurationManager;
 import com.ptc.integrity.automation.core.framework.PageDictionary;
 import com.ptc.integrity.automation.core.framework.PageObjectFactory;
 import com.ptc.integrity.automation.core.framework.Reporting;
-import com.ptc.integrity.automation.core.framework.TestXML;
+import com.ptc.integrity.automation.core.framework.OutputXML;
 
 public class KeyDrivenTestingSuiteBase {
 	final private static Logger LOGGER = Logger
@@ -52,7 +52,7 @@ public class KeyDrivenTestingSuiteBase {
 
 	protected Map<String, TestCase> testCaseMap;
 	public ArrayList<String> failCount=new ArrayList<String>();
-	protected TestXML xmlReport= new TestXML(driver, driverType, Environment);
+	protected OutputXML xmlReport= new OutputXML(driver, driverType, Environment);
 	protected File xmlOutputFile;
 	protected Date startTime;
 	protected Date endTime;
@@ -142,7 +142,6 @@ public class KeyDrivenTestingSuiteBase {
 						+ File.separator + "TestSuite" + File.separator
 						+ System.getProperty("suiteName") + ".csv";
 			}
-
 			LOGGER.info("Executing Test Suite ="+driverPath);
 
 			final CSVReaderImpl csvReader = new CSVReaderImpl(

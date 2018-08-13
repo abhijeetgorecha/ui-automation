@@ -11,7 +11,7 @@ public class ItemDetail extends PageObjectBase {
 	 */
 	//
 	public ItemDetail(PageObjectFactory pageObjectFactory) {
-		super(pageObjectFactory, "xpath:=//*[@id='root_label-4-bounding-box']");
+		super(pageObjectFactory, "xpath:=//div[contains(@class,'hbar project-details')]");
 	}
 
 	public ItemDetail(PageObjectFactory pageObjectFactory, String pageName) {
@@ -24,7 +24,9 @@ public class ItemDetail extends PageObjectBase {
 	private String edtBxSummary="xpath:=//*[@id='root_textbox-6-bounding-box']//input";
 	private String edtBxNotes="xpath:=//*[@id='root_textarea-41-bounding-box']//textarea";
 	private String webElmtTab="xpath:=//div[contains(text(),'%s')]/../..";
-	private String webElmtState="xpath:=//div[@cellvalue='%s']/../../td[2]";  
+	private String webElmtState="xpath:=//div[@cellvalue='%s']/../../td[2]"; 
+	private String webElmtProjectName="xpath:=//div[contains(@class,'project-details')]//span[contains(text(),'%s')]";
+	private String webElmtStatus="xpath:=//label[contains(text(),'STATUS')]/..//label[contains(text(),'%s')]";
 
 	/**
 	 * Enter Defect.
@@ -118,5 +120,20 @@ public class ItemDetail extends PageObjectBase {
 		}
 		getReporter().fnWriteToHtmlOutput( "CompareText", "State should be "+getDictionary().get("Expected"),"State is "+getDictionary().get("Actual"), "Fail");
 		return false;
+	}
+	
+	/**
+	 * Verify project deatils.
+	 *
+	 * @nx.param "ProjectName" 
+	 * @nx.param "Status" 
+	 * @return the boolean
+	 */
+	public Boolean VerifyProjectDeatils() {
+		if(getCommonFunctions().fCommonCheckObjectExistance(String.format(webElmtProjectName, getDictionary().get("ProjectName"))) == false)
+			return false;
+		if(getCommonFunctions().fCommonCheckObjectExistance(String.format(webElmtStatus, getDictionary().get("Status"))) == false)
+			return false;
+		return true;
 	}
 }

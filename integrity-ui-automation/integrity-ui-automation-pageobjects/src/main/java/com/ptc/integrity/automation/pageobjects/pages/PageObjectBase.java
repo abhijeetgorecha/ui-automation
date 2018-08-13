@@ -8,6 +8,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.TimeZone;
 
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.Dimension;
@@ -335,5 +336,34 @@ public class PageObjectBase {
 		return true;
 	}
 
+	public Boolean ValidateDateFormat() {
+		String ISO_8601_24H_FULL_FORMAT = getDictionary().get("format");
+		TimeZone UTC =TimeZone.getTimeZone("UTC");
+
+	    final SimpleDateFormat sdf = new SimpleDateFormat(ISO_8601_24H_FULL_FORMAT);
+        sdf.setTimeZone(UTC);
+	    Date parsedDate = null;
+	    try {
+
+	        parsedDate = sdf.parse("2012-07-23T15:58:36Z");
+
+	        getReporter().fnWriteToHtmlOutput(
+					"ValidateDateFormat",
+					"Date Format should be same",
+					"Date format same",
+					"Pass");
+			return true;
+	    } catch (ParseException e) {
+	        //Handle exception
+	    	System.out.println(e);
+	    	getReporter().fnWriteToHtmlOutput(
+					"ValidateDateFormat",
+					"Date Format should be same",
+					"Date format not same",
+					"Fail");
+	    	return false;
+	    }
+	    
+	}
 
 }

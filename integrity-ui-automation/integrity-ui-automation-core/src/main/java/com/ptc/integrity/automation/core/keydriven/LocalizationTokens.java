@@ -1,17 +1,17 @@
 package com.ptc.integrity.automation.core.keydriven;
 
-import gherkin.deps.net.iharder.Base64;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.json.JSONObject;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
+import gherkin.deps.net.iharder.Base64;
 
 
 public class LocalizationTokens {

@@ -130,7 +130,7 @@ public class KeyDrivenTestCasesSuiteRunnerCI extends KeyDrivenTestingSuiteBase {
 	public synchronized void beforeTest(final TestCase testCase) {
 		PageDictionary dictonary = new PageDictionary();
  
-		dictonary.put(KeywordDrivenConstant.JIRA_ID,
+		dictonary.put(KeywordDrivenConstant.TEST_ID,
 				testCase.getJiraId());
 		dictonary.put(KeywordDrivenConstant.TEST_NAME,
 				testCase.getTestCaseName());

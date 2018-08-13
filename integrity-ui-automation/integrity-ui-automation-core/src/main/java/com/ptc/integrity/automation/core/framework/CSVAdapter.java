@@ -345,7 +345,7 @@ public class CSVAdapter {
 	}
 
 	private String[] getSeleniumGridData(String node) {
-		return new String[] { "chrome", "39", node,"http://10.10.10.10:4040/wd/hub"};
+		return new String[] { "chrome", "39", node,"http://10.196.77.180:4444/wd/hub"};
 
 		//	        return new Object[][] {
 		////	                new Object[] { "firefox", "33", "LINUX"},//works
@@ -364,7 +364,7 @@ public class CSVAdapter {
 	public RemoteWebDriver getWebdriver(String browser, String version, String platform, String hubUrl) throws MalformedURLException {
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
 		desiredCapabilities.setBrowserName(browser);
-		desiredCapabilities.setVersion(version);
+//		desiredCapabilities.setVersion(version);
 		desiredCapabilities.setPlatform(Enum.valueOf(Platform.class, platform.toUpperCase()));
 		desiredCapabilities.setCapability("chrome.switches", Arrays.asList("--start-maximized"));
 		//        String PROXY = "10.10.10.10:8080";

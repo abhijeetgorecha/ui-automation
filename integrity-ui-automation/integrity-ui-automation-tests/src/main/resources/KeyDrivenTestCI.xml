@@ -9,7 +9,7 @@
 		<parameter name="browser" value="REMOTE"></parameter>
 		<parameter name="envcode" value="REMOTE"></parameter>
 		<parameter name="objectFactory"
-				   value="com.ptc.integrity.automation.pageobjects.objectfactory.integrityPageObjectFactory"></parameter>
+				   value="com.ptc.integrity.automation.pageobjects.objectfactory.IntegrityPageObjectFactory"></parameter>
 		<classes>
 			<class
 					name="com.ptc.integrity.automation.tests.keydriven.KeyDrivenTestCasesSuiteRunnerCI" />
