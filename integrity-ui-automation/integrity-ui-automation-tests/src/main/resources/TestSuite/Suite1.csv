@@ -9,7 +9,7 @@ S.No.,SanityOrFull,TestCaseName,SKIP,TEST_ID,URL,USER_PROFILE,Location
 8,Full,Test_ImageCompare,N,Test-8,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_ImageCompare.csv
 9,Full,Test_DefectValidationIgnore,N,Test-9,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_DefectValidationIgnore.csv
 10,Full,Test_DateValidation,N,Test-10,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test_DateValidation.csv
-11,Full,Test1,N,Test-11,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test1.csv
-12,Full,Test2,N,Test-12,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test2.csv
-12,Sanity,Test3,N,Test-13,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test3.csv
+11,Sanity,Test1,N,Test-11,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test1.csv
+12,Sanity,Test2,N,Test-12,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test2.csv
+12,Sanity,Test3,Y,Test-13,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/Test3.csv
 12,Sanity,TestFlipkart,Y,Test-13,LOCAL,,D:/Selenium/workspace/ui-automation/integrity-ui-automation/integrity-ui-automation-tests/src/main/resources/Testcases/Sanity/TestFlipkart.csv
