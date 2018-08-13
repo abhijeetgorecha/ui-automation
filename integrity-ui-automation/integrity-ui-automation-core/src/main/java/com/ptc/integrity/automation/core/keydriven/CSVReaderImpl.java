@@ -356,8 +356,8 @@ public class CSVReaderImpl {
 //							.separatorsToSystem(System.getProperty("user.dir")
 //									+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
 //				}
-				baseResourceDir = FilenameUtils
-						.separatorsToSystem(System.getProperty("user.dir")+File.separator+"src\\main\\resources\\");
+				System.out.println("########## csvreadre user dir path"+ System.getProperty("user.dir"));
+				baseResourceDir = System.getProperty("user.dir")+File.separator+"src\\main\\resources\\";
 				csvPath = FilenameUtils.separatorsToSystem(baseResourceDir
 						+ "Testcases" + File.separatorChar + folderName
 						+ File.separatorChar + FilenameUtils.getName(csvPath));
