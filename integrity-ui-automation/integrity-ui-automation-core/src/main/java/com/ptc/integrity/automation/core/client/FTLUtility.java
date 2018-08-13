@@ -29,17 +29,16 @@ public class FTLUtility {
 
 		String baseDir = System.getProperty("user.dir") + File.separator+"integrity-ui-automation"+ File.separator
 				+ "integrity-ui-automation-tests";
-		String baseResourceDir = FilenameUtils.separatorsToSystem(System
-				.getProperty("user.dir")
-				+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
+		System.out.println("##################  Base DIR Location: "+ baseDir);
+		String baseResourceDir = baseDir
+				+ File.separator+ "\\integrity-ui-automation-tests\\src\\main\\resources\\";
 
 		String output = baseDir + File.separator + "src" + File.separator
 				+ "main" + File.separator + "java" + File.separator + "com"
 				+ File.separator + "ptc" + File.separator + "integrity"
 				+ File.separator + "automation" + File.separator + "tests" + File.separator+ "keydriven"
 				+ File.separator + "KeyDrivenTestCasesSuiteRunnerCI.java";
-		String ftlLocation = System.getProperty("user.dir") + File.separator
-				+ "integrity-ui-automation-tests" + File.separator + "src"
+		String ftlLocation = baseDir + File.separator + "src"
 				+ File.separator + "main" + File.separator + "resources";
 		Configuration cfg = new Configuration();
 		try {
