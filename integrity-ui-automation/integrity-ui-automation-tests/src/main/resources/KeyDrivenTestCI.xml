@@ -7,7 +7,7 @@
 	</listeners>
 	<test name="Browser_Chrome" preserve-order="true">
 		<parameter name="browser" value="REMOTE"></parameter>
-		<parameter name="envcode" value="REMOTE"></parameter>
+		<parameter name="envcode" value="LOCAL"></parameter>
 		<parameter name="objectFactory"
 				   value="com.ptc.integrity.automation.pageobjects.objectfactory.IntegrityPageObjectFactory"></parameter>
 		<classes>

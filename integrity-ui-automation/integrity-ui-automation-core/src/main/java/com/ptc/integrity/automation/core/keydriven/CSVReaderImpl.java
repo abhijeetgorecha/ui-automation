@@ -65,6 +65,7 @@ public class CSVReaderImpl {
 		//Config settings
 		final ConfigurationManager configManager = ConfigurationManager
 				.getInstance();
+		System.out.println("@@@@@@@@@@@@@ csv reader fetch env user dir path: "+System.getProperty("user.dir"));
 		configManager.setConfigPath(System.getProperty("user.dir")
 				+ File.separator + "integrity-ui-automation.properties");
 		final Configuration config = configManager.getConfig();
@@ -348,12 +349,10 @@ public class CSVReaderImpl {
 				String baseResourceDir = null;
 				if (System.getProperty("user.dir").contains(
 						"integrity-ui-automation-tests")) {
-					System.out.println("@@@@@@@@@@@@@ If me");
 					baseResourceDir = FilenameUtils.separatorsToSystem(System
 							.getProperty("user.dir")
 							+ "\\src\\main\\resources\\");
 				} else {
-					System.out.println("@@@@@@@@@@@@@ else me");
 					baseResourceDir = FilenameUtils
 							.separatorsToSystem(System.getProperty("user.dir")+File.separator+"integrity-ui-automation"
 									+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
@@ -657,7 +656,6 @@ public class CSVReaderImpl {
 						testCase.setGroupname(steps[6]);
 
 						testCase.setWorkBookPath(steps[7]);
-						System.out.println("@@@@@@@@@@@@@@@@@ csv reader, workbook path update driver function: "+testCase.getWorkBookPath());
 						final Map<String, String> previousDictonary = new HashMap<String, String>();
 						List<TestStep> testSteps = getTestStepsByPath(
 								StringUtils.trimToEmpty(testCase.getWorkBookPath()),
