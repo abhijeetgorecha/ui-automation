@@ -27,7 +27,7 @@ public class FTLUtility {
 
 	public static void main(String args[]) {
 
-		String baseDir = System.getProperty("user.dir") + File.separator
+		String baseDir = System.getProperty("user.dir") + File.separator+"integrity-ui-automation"+ File.separator
 				+ "integrity-ui-automation-tests";
 		String baseResourceDir = FilenameUtils.separatorsToSystem(System
 				.getProperty("user.dir")
