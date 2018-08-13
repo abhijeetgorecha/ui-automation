@@ -1,0 +1,11 @@
+S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,,Step1,LoginPage,LaunchApplication,,,,,,
+2,,,Step2,HomePage,IsPageDisplayed,,,,,,
+3,,,Step3,HomePage,ClickAllProjects,,,,,,
+4,,,Step4,HomePage,SelectProject,,,ProjectName,6.5 cu ft Front Load Washer,,
+5,,,Step5,HomePage,ClickProjectDetails,,,,,,
+6,,,Step6,Overview,IsPageDisplayed,,,,,,
+7,,,Step7,Overview,VerifyProjectDeatils,,,ProjectName,6.5 cu ft Front Load Washer,Owner,vichavan
+8,,,Step8,HomePage,SelectProject,,,ProjectName,5.3 cu ft Top Load Washer,,
+9,,,Step9,Overview,IsPageDisplayed,,,,,,
+10,,,Step10,Overview,VerifyProjectDeatils,,,ProjectName,5.3 cu ft Top Load Washer,Owner,cbraeuchle

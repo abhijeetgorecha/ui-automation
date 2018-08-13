@@ -1,0 +1,7 @@
+S.No.,Ignore,BrowserID,Description,PageObjectName,KeywordName,OutputKey,OutputType,PARAMKEY,PARAMVALUE,PARAMKEY,PARAMVALUE
+1,,,Step1,LoginPage,LaunchApplication,,,,,,
+2,,,Step2,HomePage,IsPageDisplayed,,,,,,
+3,,,Step3,HomePage,ClickAllProjects,,,,,,
+4,,,Step4,HomePage,ClickOnProject,,,ProjectName,5.3 cu ft Top Load Washer,,
+5,,,Step5,ItemDetail,IsPageDisplayed,,,,,,
+6,,,Step6,ItemDetail,VerifyProjectDeatils,value,String,ProjectName,5.3 cu ft Top Load Washer,Status,Proposed
