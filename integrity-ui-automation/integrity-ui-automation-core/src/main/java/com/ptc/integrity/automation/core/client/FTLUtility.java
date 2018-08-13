@@ -31,7 +31,7 @@ public class FTLUtility {
 				+ "integrity-ui-automation-tests";
 		System.out.println("##################  Base DIR Location: "+ baseDir);
 		String baseResourceDir = baseDir
-				+ File.separator+ "\\integrity-ui-automation-tests\\src\\main\\resources\\";
+				+ File.separator+ "\\src\\main\\resources\\";
 
 		String output = baseDir + File.separator + "src" + File.separator
 				+ "main" + File.separator + "java" + File.separator + "com"
