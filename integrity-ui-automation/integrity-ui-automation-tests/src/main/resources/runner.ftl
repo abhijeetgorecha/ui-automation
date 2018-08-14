@@ -104,10 +104,12 @@ public class KeyDrivenTestCasesSuiteRunnerCI extends KeyDrivenTestingSuiteBase {
 			reporterCache.get(testCaseName).setG_iTestCaseNo(getTestNumber());
 			if (!testResultStatus) {
 			reporterCache.get(testCaseName).fnCloseHtmlReport(FilePath+File.separator+testCaseName+".txt");
+			xmlReport.addTestCasetoXML(testCaseName, "Fail", xmlOutputFile,testTotalTime);
 			}
 			else{
 				reporterCache.get(testCaseName).fnCloseHtmlReport("");
-			}	
+				xmlReport.addTestCasetoXML(testCaseName, "Pass", xmlOutputFile,testTotalTime);
+			}		
  			System.out.println("AfterMethod end - " + driverType);
 
 		} catch (final Exception e) {
