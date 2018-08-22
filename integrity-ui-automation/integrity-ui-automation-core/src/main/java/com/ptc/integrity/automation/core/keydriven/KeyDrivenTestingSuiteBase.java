@@ -59,16 +59,6 @@ public class KeyDrivenTestingSuiteBase {
 
 	@AfterClass(alwaysRun=true)
 	public void afterClass() {
-//		final File file = new File(Environment.get("STATICJSONPATH")
-//				+ File.separator + "to-send");
-//		final File dtofile = new File(Environment.get("DTOFILESPATH")
-//				+ File.separator + "to-send");
-//		try {
-//			FileUtils.cleanDirectory(file);
-//			FileUtils.cleanDirectory(dtofile);
-//		} catch (final IOException e1) {
-//			e1.printStackTrace();
-//		}
 		try {
 			// KeyDrivenTestCasesSuiteRunnerCI objSuite= new
 			// KeyDrivenTestCasesSuiteRunnerCI();
@@ -161,9 +151,6 @@ public class KeyDrivenTestingSuiteBase {
 			xmlReport.createXMLReport(xmlOutputFile);
 			objCommon = new CommonFunctions(driver, driverType, Environment,
 					Reporter);
-//			objCommon.fEditAndCopyStaticJsonFiles();
-//			objCommon.fEditDTOFiles();
-
 			testCaseMap = new LinkedHashMap<String, TestCase>();
 
 			final Driver driver = csvReader.getDriver();

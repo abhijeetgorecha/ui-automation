@@ -97,28 +97,6 @@ public class CSVAdapter {
 		ngTestingToolPath = config.getString("ui.automation.NGTestingTool.path");
 		dtoFilesPath = config.getString("ui.automation.dto.path");
 		imagesPath =  config.getString("ui.automation.images.path");
-
-
-		if (config != null && config.getBoolean("ui.mode.remoteMode")) {
-			//			referentialJsonPath = config
-			//					.getString("ui.remote.referentialJsonPath");
-			//Change for passing Referential Folder as a Maven Parameter
-			if(System.getProperty("referentialFolderName")==null || System.getProperty("referentialFolderName").length() == 0){
-				referentialJsonPath=config
-						.getString("ui.remote.referentialJsonPath");
-				//				System.out.println("referentialJsonPath " + referentialJsonPath);
-			}
-			else{
-				referentialJsonPath=config
-						.getString("ui.remote.referentialJsonPath")+File.separator+System.getProperty("referentialFolderName");
-				//				System.out.println("referentialJsonPath " + referentialJsonPath);
-			}
-		} else {
-			referentialJsonPath = config
-					.getString("ui.automation.referential.path");
-			//			System.out.println("referentialJsonPath " + referentialJsonPath);
-		}
-
 		staticJsonPath= config
 				.getString("ui.automation.static.path");
 
@@ -134,14 +112,12 @@ public class CSVAdapter {
 			enviromentsPath = System.getProperty("user.dir")+File.separator+"environments";
 
 			dtoFilesPath=System.getProperty("user.dir")+File.separator+"DTOFiles";
-			referentialJsonPath = System.getProperty("user.dir")+File.separator+"Referential";
 		}
 
 		//Add to Env Variables
 		Environment.put(IntegrityAutomationConstant.ROOTPATH, rootPath);
 		Environment.put(IntegrityAutomationConstant.EXECUTIONFOLDERPATH, executionPath);
 		Environment.put(IntegrityAutomationConstant.ENVIRONMENTXLSPATH, enviromentsPath);
-		Environment.put(IntegrityAutomationConstant.REFERENTIALJSON, referentialJsonPath);
 		Environment.put(IntegrityAutomationConstant.STATICJSONPATH, staticJsonPath);
 		Environment.put(IntegrityAutomationConstant.SNAPSHOTOPTION, screenShotOption);
 		Environment.put(IntegrityAutomationConstant.DRIVERCLOSEOPTION, drivercloseoption);
@@ -346,20 +322,6 @@ public class CSVAdapter {
 
 	private String[] getSeleniumGridData(String node) {
 		return new String[] { "chrome", "39", node,"http://10.196.77.180:4444/wd/hub"};
-
-		//	        return new Object[][] {
-		////	                new Object[] { "firefox", "33", "LINUX"},//works
-		////	                new Object[] { "chrome", "38", "LINUX"},//works but screenshots are not capturing whole page
-		////	                new Object[] { "firefox", "33", "WIN8"},//works
-		////	                new Object[] { "firefox", "33", "WINDOWS"},//works
-		////	                new Object[] { "chrome", "39", "WIN8"},//works but screenshots are not capturing whole page
-		////	                new Object[] { "chrome", "39", "WINDOWS"},//works but screenshots are not capturing whole page
-		////	                new Object[] { "chrome", "39", "VISTA"},//works but screenshots are not capturing whole page
-		//	                new String { "chrome", "39", "WIN8"},
-		////	                new Object[] { "internet explorer", "10", "WINDOWS"},//black screenshot
-		////	                new Object[] { "internet explorer", "11", "WIN8"},//unable to navigate
-		////	        		new Object[] { "chrome", "39", "WIN8"},
-		//	        };
 	}
 	public RemoteWebDriver getWebdriver(String browser, String version, String platform, String hubUrl) throws MalformedURLException {
 		DesiredCapabilities desiredCapabilities = new DesiredCapabilities();

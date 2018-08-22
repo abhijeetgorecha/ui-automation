@@ -136,13 +136,6 @@ public class PageObjectBase {
 		Reporter.fnWriteToHtmlOutput("IsPageDisplayed", webElmtPageTitle
 						+ " should be displayed", webElmtPageTitle + " is displayed",
 				"Pass");
-
-		try {
-//			getCommonFunctions().getWaitObject(3).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//body//*[contains(@class,'fis-start-menu-opened')]")));
-//			getCommonFunctions().fCommonClick("xpath:=//button[@ng-if='showMenuButton()']", "Menu button");
-		} catch (Exception e) {
-		}
-
 		return true;
 	}
 

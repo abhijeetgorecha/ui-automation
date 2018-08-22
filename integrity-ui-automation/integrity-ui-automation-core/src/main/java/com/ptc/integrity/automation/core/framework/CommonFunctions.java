@@ -36,16 +36,16 @@ import com.ptc.integrity.automation.core.utils.IntegrityAutomationConstant;
  * The Class CommonFunctions.
  */
 public class CommonFunctions implements Cloneable{
-	
+
 	/** The driver. */
 	private WebDriver driver;
-	
+
 	/** The driver type. */
 	private String driverType;
-	
+
 	/** The Reporter. */
 	private Reporting Reporter;
-	
+
 	/** The Environment. */
 	private HashMap <String, String> Environment;
 
@@ -65,7 +65,7 @@ public class CommonFunctions implements Cloneable{
 		Reporter = Report;
 	}
 
-	
+
 	public Wait<WebDriver> getWaitObject(){
 		return getWaitObject(20);
 	}
@@ -79,7 +79,7 @@ public class CommonFunctions implements Cloneable{
 				.ignoring(StaleElementReferenceException.class)
 				.ignoring(WebDriverException.class);
 	}
-	
+
 	//*****************************************************************************************
 	//*	Name		    : fCommonLaunchEnvironemnt
 	//*	Description	    : Launch env for any URL
@@ -110,12 +110,12 @@ public class CommonFunctions implements Cloneable{
 			}
 			JavascriptExecutor js = (JavascriptExecutor)driver;
 			//Navigate to new Page
-//			js.executeScript("window.location = '" + strUrl + "'");
+			//			js.executeScript("window.location = '" + strUrl + "'");
 
 			driver.get(strUrl);
-			
+
 			System.out.println(IntegrityAutomationConstant.TEST_STEP_DESCRIPTION);
-		
+
 			driver.navigate().refresh();
 			System.out.println(ExecutionEngine.getignore());
 			Reporter.fnWriteToHtmlOutput("fCommonLaunchEnvironemnt", strUrl+" should be launched", "URL is launched successfully", "Pass");
@@ -278,8 +278,8 @@ public class CommonFunctions implements Cloneable{
 			return false;
 		}  
 	}	
-	
-	
+
+
 	//*****************************************************************************************
 	//*	Name		    : fCommonClick
 	//*	Description	    : Click on the webelement
@@ -310,7 +310,7 @@ public class CommonFunctions implements Cloneable{
 
 			}
 
-//			webElement = getWaitObject(10).until(ExpectedConditions.elementToBeClickable(fCommonGetObject(webElmtProp, strObjName)));
+			//			webElement = getWaitObject(10).until(ExpectedConditions.elementToBeClickable(fCommonGetObject(webElmtProp, strObjName)));
 
 			//Click on the WebElement
 			int intCount = 1;
@@ -342,7 +342,7 @@ public class CommonFunctions implements Cloneable{
 			}
 			Reporter.fnWriteToHtmlOutput("fCommonClick", strObjName + " should be clicked", strObjName + " is clicked successfully", "Done");
 			return CheckErrorWarningPopUp();
-//			return true;
+			//			return true;
 		} catch (Exception e) {
 			Reporter.fnWriteToHtmlOutput("fCommonClick", "Exception occurred for object: " + strObjName, "Exception: " + e, "Fail");
 			return false;
@@ -377,9 +377,9 @@ public class CommonFunctions implements Cloneable{
 			while (intCount<=3){
 				try {	    
 					webElement.getLocation();
-					
+
 					((JavascriptExecutor) driver).executeScript("return arguments[0].click()", webElement);
-					
+
 					break;	        		
 				}catch (StaleElementReferenceException e){
 					webElement = fCommonGetObject(webElmtProp,strObjName);
@@ -401,7 +401,7 @@ public class CommonFunctions implements Cloneable{
 			}
 			Reporter.fnWriteToHtmlOutput("fCommonJavascriptClick", strObjName+" should be clicked",strObjName+" is clicked successfully", "Done");
 			return CheckErrorWarningPopUp();
-//			return true;
+			//			return true;
 
 		}catch(Exception e){
 			Reporter.fnWriteToHtmlOutput("fCommonJavascriptClick", "Exception occurred for Object: " + strObjName,"Exception: " + e, "Fail");
@@ -482,7 +482,7 @@ public class CommonFunctions implements Cloneable{
 				intCount++;
 			}	        
 			return CheckErrorWarningPopUp();
-//			return true;
+			//			return true;
 
 		} catch (Exception e){		
 			System.out.println("fCommonSelectionOptionFromList(): " + e);
@@ -513,7 +513,7 @@ public class CommonFunctions implements Cloneable{
 		try{
 			//Get WebElement
 			WebElement objWebEdit = fCommonGetObject(webElmtProp,strObjName);
-//			getWaitObject().until(ExpectedConditions.elementToBeClickable(objWebEdit));
+			//			getWaitObject().until(ExpectedConditions.elementToBeClickable(objWebEdit));
 			JavascriptExecutor js = ((JavascriptExecutor) driver);
 
 			//Checks if input parameter is Null
@@ -578,7 +578,7 @@ public class CommonFunctions implements Cloneable{
 						objWebEdit.sendKeys(Keys.CONTROL + "a");
 						objWebEdit.sendKeys(Keys.DELETE);
 						objWebEdit.sendKeys(strValue);
-//						objWebEdit.click();
+						//						objWebEdit.click();
 						fWaitForPageToLoad();
 					}
 				}catch (StaleElementReferenceException e){
@@ -614,7 +614,7 @@ public class CommonFunctions implements Cloneable{
 				intCount++;
 			}
 			Reporter.fnWriteToHtmlOutput("fCommonSetValueEditBox", strValue+" should be set in "+strObjName, strValue+ " is set in "+strObjName+" successfully", "Done");    	
-//			return true;
+			//			return true;
 			return CheckErrorWarningPopUp();
 		}catch (Exception e)
 		{	
@@ -807,8 +807,8 @@ public class CommonFunctions implements Cloneable{
 	 * @param webElementSelector - web element selector
 	 * @param value - value
 	 * @param objectName - dropdown name - for reporting purposes
-     * @return - return true if successful
-     */
+	 * @return - return true if successful
+	 */
 	public boolean fCommonSelectOptionByValue(final String webElementSelector, final String value, final String objectName){
 		try {
 			new Select(fCommonGetObject(webElementSelector, objectName));
@@ -1100,7 +1100,7 @@ public class CommonFunctions implements Cloneable{
 		fWaitForPageToLoad();
 
 		//WebElement el=	wait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(val)));
-	
+
 		int intcount = 1;
 		while (intcount <= 2) {
 			//System.out.println("Looking for Object: " + val + "No:" + intcount);
@@ -1418,7 +1418,7 @@ public class CommonFunctions implements Cloneable{
 			intCount++;
 		}	        
 		Reporter.fnWriteToHtmlOutput("fCommonClick: "+strObjName, strObjName+ " should be clicked", strObjName+ " is clicked successfully", "Done");
-//		return true;    
+		//		return true;    
 		return CheckErrorWarningPopUp();
 	}
 
@@ -1530,7 +1530,7 @@ public class CommonFunctions implements Cloneable{
 				intCount++;
 			}
 			Reporter.fnWriteToHtmlOutput("fCommonSendKeys", keyname+" should be send ", keyname+ " is sent successfully", "Pass");    	
-//			return true;
+			//			return true;
 			return CheckErrorWarningPopUp();
 		}catch (Exception e)
 		{	
@@ -1644,57 +1644,6 @@ public class CommonFunctions implements Cloneable{
 	public boolean fWaitForPageToLoad(){
 		int waitPeriod = 30;
 		WebDriverWait wait = new WebDriverWait(driver, waitPeriod);
-		//NgWebDriver
-//		try {
-//			wait.until(new Predicate<WebDriver>() {
-//				public boolean apply(WebDriver d) {
-//					return (Boolean) ((JavascriptExecutor)d).executeScript("try {\n" +
-//							"  if (typeof jQuery !== 'undefined'){\n " +
-//								"	if(jQuery.active !== 0 || document.readyState !== 'complete'){\n" +
-//								"	console.log('false jQUREY');return false;\n" +
-//								"	} \n" +
-//							"	}\n" +
-//							"	else if (typeof jQuery === 'undefined' && document.readyState !== 'complete'){ \n" +
-//							"	console.log('false jQUREY');return false; \n" +
-//							"	}\n" +
-//							"  if (window.angular) {\n" +
-//							"    if (!window.qa) {\n" +
-//							"      // Used to track the render cycle finish after loading is complete\n" +
-//							"      window.qa = {\n" +
-//							"        doneRendering: false\n" +
-//							"      };\n" +
-//							"    }\n" +
-//							"// Get the angular injector for this app (change element if necessary)\n" +
-//							"    var injector = window.angular.element('body').injector();\n" +
-//							"    // Store providers to use for these checks\n" +
-//							"    var $rootScope = injector.get('$rootScope');\n" +
-//							"    var $http = injector.get('$http');\n" +
-//							"    var $timeout = injector.get('$timeout');\n" +
-//							"    // Check if digest\n" +
-//							"    if ($rootScope.$$phase === '$apply' || $rootScope.$$phase === '$digest' || $http.pendingRequests.length !== 0) {\n" +
-//							"      window.qa.doneRendering = false;\n" +
-//							"      console.log('false ANG loading data');return false; // Angular digesting or loading data\n" +
-//							"    }\n" +
-//							"    if (!window.qa.doneRendering) {\n" +
-//							"      // Set timeout to mark angular rendering as finished\n" +
-//							"      $timeout(function() {\n" +
-//							"        window.qa.doneRendering = true;\n" +
-//							"      }, 0);\n" +
-//							"      console.log('false ANG RENDERING');return false;\n" +
-//							"    }\n" +
-//							"}\n" +
-//							"  return true;\n" +
-//							"} catch (ex) {\n" +
-//							"  console.log('false CATCH');return false;\n" +
-//							"}");
-//				}
-//
-//			});
-//		} catch (TimeoutException e) {
-//			Reporter.fnWriteToHtmlOutput("fWaitForPageToLoad", "Page failed to load in " + waitPeriod + " seconds.",
-//					"Exception: " + e, "Fail");
-//			return false;
-//		}
 		return true;
 	}
 
@@ -1714,322 +1663,120 @@ public class CommonFunctions implements Cloneable{
 	 * @return the boolean
 	 */
 	public Boolean CheckErrorWarningPopUp(){
-//		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
-//		String webElmtErrorWarningPopUp = "xpath:=//div[@id='toast-container']/div";
-//		boolean bStatus = false;
-//
-//
-//		//Delimiters
-//		String[] delimiters = new String[] {":="};
-//		String[] arrFindByValues = webElmtErrorWarningPopUp.split(delimiters[0]);
-//		//Get Findby and Value 
-//		String FindBy="";
-//		String val="";
-//		if(arrFindByValues.length==2){
-//			FindBy = arrFindByValues[0];
-//			val = arrFindByValues[1];        	
-//		}
-//		else{
-//			Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "CheckErrorWarningPopUp should be valid","Locator for Error PopUp is not valid: " + webElmtErrorWarningPopUp, "Fail");
-//			return false;
-//		}
-//
-//		try{
-//			//Handle all FindBy cases
-//			String strElement = FindBy.toLowerCase();
-//			if (strElement.equalsIgnoreCase("linktext")){
-//				bStatus = driver.findElement(By.linkText(val)).isEnabled();
-//			}
-//			else if (strElement.equalsIgnoreCase("xpath")){
-//				bStatus = driver.findElement(By.xpath(val)).isEnabled();
-//			}
-//			else if (strElement.equalsIgnoreCase("name")){
-//				bStatus = driver.findElement(By.name(val)).isEnabled();
-//			}
-//			else if (strElement.equalsIgnoreCase("id")){
-//				bStatus = driver.findElement(By.id(val)).isDisplayed();
-//			}
-//			else if (strElement.equalsIgnoreCase("classname")){
-//				bStatus = driver.findElement(By.className(val)).isEnabled();
-//			}
-//			else if(strElement.equalsIgnoreCase("cssselector")){
-//				bStatus = driver.findElement(By.cssSelector(val)).isEnabled();
-//			}
-//			driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
-//			//		was already Commented	Reporter.fnWriteToHtmlOutput("fCommonCheckObjectExistance", " Webelement should exist", "Webelement exist", "Done");
-//			if(bStatus==true){
-//				if(driver.findElement(By.xpath(val)).getAttribute("class").contains("warning") || driver.findElement(By.xpath(val)).getAttribute("class").contains("error"))
-//				{
-//				Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is displayed", "Fail");
-//				return false;
-//				}
-//				else return true;
-//			}
-//			else{
-////		was already Commented		Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is not displayed", "Pass");
-//				return true;
-//			}
-//			//				return bStatus;
-//
-//		}catch(Exception e){
-//			if(bStatus==false){
-////		was already Commented 		Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is not displayed", "Pass");
-//				return true;
-//			}
-//			else {
-//				Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is displayed", "Fail");
-//				return false;
-//			}
-//		}	
-//		finally{
-//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
-//		}
+		//		driver.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS);
+		//		String webElmtErrorWarningPopUp = "xpath:=//div[@id='toast-container']/div";
+		//		boolean bStatus = false;
+		//
+		//
+		//		//Delimiters
+		//		String[] delimiters = new String[] {":="};
+		//		String[] arrFindByValues = webElmtErrorWarningPopUp.split(delimiters[0]);
+		//		//Get Findby and Value 
+		//		String FindBy="";
+		//		String val="";
+		//		if(arrFindByValues.length==2){
+		//			FindBy = arrFindByValues[0];
+		//			val = arrFindByValues[1];        	
+		//		}
+		//		else{
+		//			Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "CheckErrorWarningPopUp should be valid","Locator for Error PopUp is not valid: " + webElmtErrorWarningPopUp, "Fail");
+		//			return false;
+		//		}
+		//
+		//		try{
+		//			//Handle all FindBy cases
+		//			String strElement = FindBy.toLowerCase();
+		//			if (strElement.equalsIgnoreCase("linktext")){
+		//				bStatus = driver.findElement(By.linkText(val)).isEnabled();
+		//			}
+		//			else if (strElement.equalsIgnoreCase("xpath")){
+		//				bStatus = driver.findElement(By.xpath(val)).isEnabled();
+		//			}
+		//			else if (strElement.equalsIgnoreCase("name")){
+		//				bStatus = driver.findElement(By.name(val)).isEnabled();
+		//			}
+		//			else if (strElement.equalsIgnoreCase("id")){
+		//				bStatus = driver.findElement(By.id(val)).isDisplayed();
+		//			}
+		//			else if (strElement.equalsIgnoreCase("classname")){
+		//				bStatus = driver.findElement(By.className(val)).isEnabled();
+		//			}
+		//			else if(strElement.equalsIgnoreCase("cssselector")){
+		//				bStatus = driver.findElement(By.cssSelector(val)).isEnabled();
+		//			}
+		//			driver.manage().timeouts().implicitlyWait(3000, TimeUnit.MILLISECONDS);
+		//			//		was already Commented	Reporter.fnWriteToHtmlOutput("fCommonCheckObjectExistance", " Webelement should exist", "Webelement exist", "Done");
+		//			if(bStatus==true){
+		//				if(driver.findElement(By.xpath(val)).getAttribute("class").contains("warning") || driver.findElement(By.xpath(val)).getAttribute("class").contains("error"))
+		//				{
+		//				Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is displayed", "Fail");
+		//				return false;
+		//				}
+		//				else return true;
+		//			}
+		//			else{
+		////		was already Commented		Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is not displayed", "Pass");
+		//				return true;
+		//			}
+		//			//				return bStatus;
+		//
+		//		}catch(Exception e){
+		//			if(bStatus==false){
+		////		was already Commented 		Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is not displayed", "Pass");
+		//				return true;
+		//			}
+		//			else {
+		//				Reporter.fnWriteToHtmlOutput("CheckErrorWarningPopUp", "Error Warning PopUp should not be displayed","Error Warning PopUp is displayed", "Fail");
+		//				return false;
+		//			}
+		//		}	
+		//		finally{
+		//			driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		//		}
 		return true;
 	}
 
-		// *****************************************************************************************
-		// * Name : fCommonSelectCheckboxCH
-		// * Description : Check a webelement
-		// * Author : Imen Ben Rejeb
-		// * Input Params : WebElement Properties - The webelement for which we need
-		// to click
-		// * Return Values : Boolean - Depending on the success
-		/**
-		 * F common click.
-		 *
-		 * @param webElmtProp
-		 *            the web elmt prop
-		 * @param strObjName
-		 *            the str obj name
-		 * @return true, if successful
-		 * @throws ElementNotVisibleException
-		 *             the element not visible exception
-		 */
-		// *****************************************************************************************
-		public boolean fCommonSelectCheckboxCH(String webElmtProp, String strObjName, String key, String HiddenDiv)
-				throws ElementNotVisibleException {
-			WebElement WebhiddenDiv = driver.findElement(By.xpath(HiddenDiv));
-			String n = WebhiddenDiv.getText(); // does not work (returns "" as
-												// expected)
-			String script = "return arguments[0].innerHTML";
-			n = (String) ((JavascriptExecutor) driver).executeScript(script, WebhiddenDiv);
-			try {
-				// Get WebElement
-				WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
-				if (webElement == null) {
-					Reporter.fnWriteToHtmlOutput("fCommonClick: " + strObjName, "Object should be found",
-							"Object was not found. Null value returned", "Fail");
-					return false;
-				}
-
-				// Click on the WebElement
-				if (n.trim().equals("false")) {
-					int intCount = 1;
-					while (intCount <= 3) {
-						try {
-							webElement.click();
-							break;
-
-						} catch (StaleElementReferenceException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						} catch (InvalidElementStateException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						} catch (WebDriverException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						}
-
-						catch (NullPointerException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-
-						} catch (Exception e) {
-							driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-						}
-						if (intCount == 3) {
-							Reporter.fnWriteToHtmlOutput("fCommonClick", strObjName, strObjName + " is not clicked",
-									"Fail");
-							return false;
-						}
-						intCount++;
-					}
-					Reporter.fnWriteToHtmlOutput("fCommonSelectCheckbox", strObjName + " should (not) be checked",
-							strObjName + " is (un)checked successfully", "Done");
-					return CheckErrorWarningPopUp();
-					// return true;
-				} else {
-
-					Reporter.fnWriteToHtmlOutput("fCommonSelectCheckbox", strObjName + " sshould (not) be checked",
-							strObjName + " is (un)checked successfully ", "Done");
-					return CheckErrorWarningPopUp();
-				}
-
-			} catch (Exception e) {
-				Reporter.fnWriteToHtmlOutput("fCommonClick", "Exception occurred for object: " + strObjName,
-						"Exception: " + e, "Fail");
+	// *****************************************************************************************
+	// * Name : fCommonSelectCheckboxCH
+	// * Description : Check a webelement
+	// * Input Params : WebElement Properties - The webelement for which we need
+	// to click
+	// * Return Values : Boolean - Depending on the success
+	/**
+	 * F common click.
+	 *
+	 * @param webElmtProp
+	 *            the web elmt prop
+	 * @param strObjName
+	 *            the str obj name
+	 * @return true, if successful
+	 * @throws ElementNotVisibleException
+	 *             the element not visible exception
+	 */
+	// *****************************************************************************************
+	public boolean fCommonSelectCheckboxCH(String webElmtProp, String strObjName, String key, String HiddenDiv)
+			throws ElementNotVisibleException {
+		WebElement WebhiddenDiv = driver.findElement(By.xpath(HiddenDiv));
+		String n = WebhiddenDiv.getText(); // does not work (returns "" as
+		// expected)
+		String script = "return arguments[0].innerHTML";
+		n = (String) ((JavascriptExecutor) driver).executeScript(script, WebhiddenDiv);
+		try {
+			// Get WebElement
+			WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
+			if (webElement == null) {
+				Reporter.fnWriteToHtmlOutput("fCommonClick: " + strObjName, "Object should be found",
+						"Object was not found. Null value returned", "Fail");
 				return false;
 			}
-		}
 
-		// *****************************************************************************************
-		// * Name : fCommonMouseoverCH
-		// * Description : mouse Over
-		// * Author :  Imen Ben Rejeb
-		// * Input Params : sWebElement
-		// * Return Values : Boolean - Depending on the success
-		/**
-		* F common launch environemnt.
-		*
-		* @param strUrl
-		*            the str url
-		* @return true, if successful
-		*/
-		// *****************************************************************************************
-		public boolean fCommonMouseoverCH(String WebElement) {
-				try {
-					WebElement ele1 = fCommonGetWebElement(WebElement, "WebElement");
-					String javaScript = "var evObj = document.createEvent('MouseEvents');" +
-		                    "evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
-		                    "arguments[0].dispatchEvent(evObj);";
-					((JavascriptExecutor)driver).executeScript(javaScript, ele1);
-					return true;
-
-				} catch (Exception e) {
-					e.printStackTrace();
-					Reporter.fnWriteToHtmlOutput("fCommonMouseover", "Exception occurred", "Exception: " + e, "Fail");
-					return false;
-				}
-			}
-
-		// *****************************************************************************************
-		// * Name : fCommonWaitAndCheckValueCH
-		// * Description : Check a webelement
-		// * Author : Imen Ben Rejeb
-		// * Input Params : WebElement Properties - The webelement for which we need
-		// to click
-		// * Return Values : Boolean - Depending on the success
-		/**
-		* F common click.
-		*
-		* @param webElmtProp
-		*            the web elmt prop
-		* @param strObjName
-		*            the str obj name
-		* @return true, if successful
-		* @throws ElementNotVisibleException
-		*             the element not visible exception
-		*/
-		// *****************************************************************************************
-		public boolean fCommonWaitAndCheckValueCH(String webElmtProp, String strObjName, String key, String period)
-					throws ElementNotVisibleException {
-				int duration = Integer.valueOf(period);
-				if (duration >= 15000) {
-					fCommonSync(duration);
-				} else {
-					fCommonSync(15000);
-				}
-				try {
-					// Get WebElement
-					WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
-					if (webElement == null) {
-						Reporter.fnWriteToHtmlOutput("fCommonCheckValue: " + strObjName, "Object should be found",
-								"Object was not found. Null value returned", "Fail");
-						return false;
-					}
-
-					// Click on the WebElement
-					int intCount = 1;
-					String webElementText;
-					while (intCount <= 3) {
-						try {
-							webElementText = webElement.getText().trim();
-							System.out.println("$$$$$$$$$ webElement : " + webElement);
-							System.out.println("$$$$$$$$$ webElementText : " + webElementText);
-							System.out.println("$$$$$$$$$ key : " + key);
-							if (webElementText.equalsIgnoreCase(key)) {
-								break;
-
-							}
-
-						} catch (StaleElementReferenceException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						} catch (InvalidElementStateException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						} catch (WebDriverException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-						}
-
-						catch (NullPointerException e) {
-							webElement = fCommonGetObject(webElmtProp, strObjName);
-
-						} catch (Exception e) {
-							driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
-						}
-						if (intCount == 3) {
-							Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName,
-									strObjName + " value is not equal to the expected value", "Fail");
-							return false;
-						}
-						intCount++;
-					}
-					Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName + " should be equal to the expected value",
-							strObjName + " is equal to the expected value", "Done");
-					return CheckErrorWarningPopUp();
-					// return true;
-
-				} catch (Exception e) {
-					Reporter.fnWriteToHtmlOutput("fCommonCheckValue", "Exception occurred for object: " + strObjName,
-							"Exception: " + e, "Fail");
-					return false;
-				}
-			}
-
-		// *****************************************************************************************
-		// * Name : fCommonCheckValueCH
-		// * Description : Check a webelement
-		// * Author : Imen Ben Rejeb & Dhouha Ben Ayed
-		// * Input Params : WebElement Properties - The webelement for which we need
-		// to click
-		// * Return Values : Boolean - Depending on the success
-		/**
-		 * F common click.
-		 *
-		 * @param webElmtProp
-		 *            the web elmt prop
-		 * @param strObjName
-		 *            the str obj name
-		 * @return true, if successful
-		 * @throws ElementNotVisibleException
-		 *             the element not visible exception
-		 */
-		// *****************************************************************************************
-		public boolean fCommonCheckValueCH(String webElmtProp, String strObjName, String key)
-				throws ElementNotVisibleException {
-			try {
-				// Get WebElement
-				WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
-				if (webElement == null) {
-					Reporter.fnWriteToHtmlOutput("fCommonCheckValue: " + strObjName, "Object should be found",
-							"Object was not found. Null value returned", "Fail");
-					return false;
-				}
-
-				// Click on the WebElement
+			// Click on the WebElement
+			if (n.trim().equals("false")) {
 				int intCount = 1;
-				String webElementText;
 				while (intCount <= 3) {
 					try {
-						if(webElement.getAttribute("value")!=null)
-						{
-							webElementText = webElement.getAttribute("value").trim();
-						}
-						else
-						{
-							webElementText = webElement.getText().trim();
-						}
-						System.out.println("webElementText value   !!!!!!!! : "+webElementText);
-						if (webElementText.equalsIgnoreCase(key.trim())) {
-							break;
-
-						}
+						webElement.click();
+						break;
 
 					} catch (StaleElementReferenceException e) {
 						webElement = fCommonGetObject(webElmtProp, strObjName);
@@ -2046,41 +1793,263 @@ public class CommonFunctions implements Cloneable{
 						driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
 					}
 					if (intCount == 3) {
-						Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName,
-								strObjName + " value is not equal to the expected value", "Fail");
+						Reporter.fnWriteToHtmlOutput("fCommonClick", strObjName, strObjName + " is not clicked",
+								"Fail");
 						return false;
 					}
 					intCount++;
 				}
-				Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName + " should be equal to the expected value",
-						strObjName + " is equal to the expected value", "Done");
+				Reporter.fnWriteToHtmlOutput("fCommonSelectCheckbox", strObjName + " should (not) be checked",
+						strObjName + " is (un)checked successfully", "Done");
 				return CheckErrorWarningPopUp();
 				// return true;
+			} else {
 
-			} catch (Exception e) {
-				Reporter.fnWriteToHtmlOutput("fCommonCheckValue", "Exception occurred for object: " + strObjName,
-						"Exception: " + e, "Fail");
+				Reporter.fnWriteToHtmlOutput("fCommonSelectCheckbox", strObjName + " sshould (not) be checked",
+						strObjName + " is (un)checked successfully ", "Done");
+				return CheckErrorWarningPopUp();
+			}
+
+		} catch (Exception e) {
+			Reporter.fnWriteToHtmlOutput("fCommonClick", "Exception occurred for object: " + strObjName,
+					"Exception: " + e, "Fail");
+			return false;
+		}
+	}
+
+	// *****************************************************************************************
+	// * Name : fCommonMouseoverCH
+	// * Description : mouse Over
+	// * Input Params : sWebElement
+	// * Return Values : Boolean - Depending on the success
+	/**
+	 * F common launch environemnt.
+	 *
+	 * @param strUrl
+	 *            the str url
+	 * @return true, if successful
+	 */
+	// *****************************************************************************************
+	public boolean fCommonMouseoverCH(String WebElement) {
+		try {
+			WebElement ele1 = fCommonGetWebElement(WebElement, "WebElement");
+			String javaScript = "var evObj = document.createEvent('MouseEvents');" +
+					"evObj.initMouseEvent(\"mouseover\",true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);" +
+					"arguments[0].dispatchEvent(evObj);";
+			((JavascriptExecutor)driver).executeScript(javaScript, ele1);
+			return true;
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			Reporter.fnWriteToHtmlOutput("fCommonMouseover", "Exception occurred", "Exception: " + e, "Fail");
+			return false;
+		}
+	}
+
+	// *****************************************************************************************
+	// * Name : fCommonWaitAndCheckValueCH
+	// * Description : Check a webelement
+	// * Input Params : WebElement Properties - The webelement for which we need
+	// to click
+	// * Return Values : Boolean - Depending on the success
+	/**
+	 * F common click.
+	 *
+	 * @param webElmtProp
+	 *            the web elmt prop
+	 * @param strObjName
+	 *            the str obj name
+	 * @return true, if successful
+	 * @throws ElementNotVisibleException
+	 *             the element not visible exception
+	 */
+	// *****************************************************************************************
+	public boolean fCommonWaitAndCheckValueCH(String webElmtProp, String strObjName, String key, String period)
+			throws ElementNotVisibleException {
+		int duration = Integer.valueOf(period);
+		if (duration >= 15000) {
+			fCommonSync(duration);
+		} else {
+			fCommonSync(15000);
+		}
+		try {
+			// Get WebElement
+			WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
+			if (webElement == null) {
+				Reporter.fnWriteToHtmlOutput("fCommonCheckValue: " + strObjName, "Object should be found",
+						"Object was not found. Null value returned", "Fail");
 				return false;
 			}
+
+			// Click on the WebElement
+			int intCount = 1;
+			String webElementText;
+			while (intCount <= 3) {
+				try {
+					webElementText = webElement.getText().trim();
+					System.out.println("$$$$$$$$$ webElement : " + webElement);
+					System.out.println("$$$$$$$$$ webElementText : " + webElementText);
+					System.out.println("$$$$$$$$$ key : " + key);
+					if (webElementText.equalsIgnoreCase(key)) {
+						break;
+
+					}
+
+				} catch (StaleElementReferenceException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				} catch (InvalidElementStateException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				} catch (WebDriverException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				}
+
+				catch (NullPointerException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+
+				} catch (Exception e) {
+					driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+				}
+				if (intCount == 3) {
+					Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName,
+							strObjName + " value is not equal to the expected value", "Fail");
+					return false;
+				}
+				intCount++;
+			}
+			Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName + " should be equal to the expected value",
+					strObjName + " is equal to the expected value", "Done");
+			return CheckErrorWarningPopUp();
+			// return true;
+
+		} catch (Exception e) {
+			Reporter.fnWriteToHtmlOutput("fCommonCheckValue", "Exception occurred for object: " + strObjName,
+					"Exception: " + e, "Fail");
+			return false;
 		}
+	}
+
+	// *****************************************************************************************
+	// * Name : fCommonCheckValueCH
+	// * Description : Check a webelement
+	// * Input Params : WebElement Properties - The webelement for which we need
+	// to click
+	// * Return Values : Boolean - Depending on the success
+	/**
+	 * F common click.
+	 *
+	 * @param webElmtProp
+	 *            the web elmt prop
+	 * @param strObjName
+	 *            the str obj name
+	 * @return true, if successful
+	 * @throws ElementNotVisibleException
+	 *             the element not visible exception
+	 */
+	// *****************************************************************************************
+	public boolean fCommonCheckValueCH(String webElmtProp, String strObjName, String key)
+			throws ElementNotVisibleException {
+		try {
+			// Get WebElement
+			WebElement webElement = fCommonGetObject(webElmtProp, strObjName);
+			if (webElement == null) {
+				Reporter.fnWriteToHtmlOutput("fCommonCheckValue: " + strObjName, "Object should be found",
+						"Object was not found. Null value returned", "Fail");
+				return false;
+			}
+
+			// Click on the WebElement
+			int intCount = 1;
+			String webElementText;
+			while (intCount <= 3) {
+				try {
+					if(webElement.getAttribute("value")!=null)
+					{
+						webElementText = webElement.getAttribute("value").trim();
+					}
+					else
+					{
+						webElementText = webElement.getText().trim();
+					}
+					System.out.println("webElementText value   !!!!!!!! : "+webElementText);
+					if (webElementText.equalsIgnoreCase(key.trim())) {
+						break;
+
+					}
+
+				} catch (StaleElementReferenceException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				} catch (InvalidElementStateException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				} catch (WebDriverException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+				}
+
+				catch (NullPointerException e) {
+					webElement = fCommonGetObject(webElmtProp, strObjName);
+
+				} catch (Exception e) {
+					driver.manage().timeouts().implicitlyWait(1000, TimeUnit.MILLISECONDS);
+				}
+				if (intCount == 3) {
+					Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName,
+							strObjName + " value is not equal to the expected value", "Fail");
+					return false;
+				}
+				intCount++;
+			}
+			Reporter.fnWriteToHtmlOutput("fCommonCheckValue", strObjName + " should be equal to the expected value",
+					strObjName + " is equal to the expected value", "Done");
+			return CheckErrorWarningPopUp();
+			// return true;
+
+		} catch (Exception e) {
+			Reporter.fnWriteToHtmlOutput("fCommonCheckValue", "Exception occurred for object: " + strObjName,
+					"Exception: " + e, "Fail");
+			return false;
+		}
+	}
+
+	public WebElement expandRootElement(String rootElement) {
+
+		//			WebElement r = document
+		WebElement element = fCommonGetWebElement(rootElement, "");
+		WebElement ele = (WebElement) ((JavascriptExecutor)driver).executeScript("return arguments[0].shadowRoot", element);
+		//			WebElement outer = (WebElement) ((JavascriptExecutor)driver).executeScript("return document.querySelector('.search').shadowRoot");
+		//			WebElement ele = outer.findElement(By.xpath("//input"));
+		return ele;
+	}
+
+	public Boolean AccessShadowRootElement(String ParentElement, String Element) {
+
+		WebElement root = fCommonGetWebElement(ParentElement, "Parent element");
+		WebElement shadowElement =   (WebElement) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot",root);
+
+		String[] delimiters = new String[] {":="};
+		String[] arrFindByValues = Element.split(delimiters[0]);
+		//Get Findby and V   alue
+		String FindBy, val;
+		if(arrFindByValues.length==2){
+			FindBy = arrFindByValues[0];
+			val = arrFindByValues[1];        	
+		}
+		else{
+			Reporter.fnWriteToHtmlOutput("accessShadowRootElement", "Element should be valid","Element is not valid: " + Element, "Fail");
+			return null;
+		}
+		String strElement = FindBy.toLowerCase();
+		WebElement elementToAccess;
+		if (strElement.equalsIgnoreCase("cssselector")){
+			elementToAccess= shadowElement.findElement(By.cssSelector(val));
+		}
+		else {
+			Reporter.fnWriteToHtmlOutput("accessShadowRootElement", "Only cssselector is allowed to identify element in this method","Locator provided is  " + FindBy, "Fail");
+			return false;
+		}
+		//		WebElement main = shadowElement.findElement(By.xpath("//input"));
+//		elementToAccess.sendKeys("Top");
+		fCommonClick(elementToAccess,"Element to access under shadow root");
 		
-		public WebElement expandRootElement(String rootElement) {
-			
-//			WebElement r = document
-			WebElement element = fCommonGetWebElement(rootElement, "");
-			WebElement ele = (WebElement) ((JavascriptExecutor)driver).executeScript("return arguments[0].shadowRoot", element);
-//			WebElement outer = (WebElement) ((JavascriptExecutor)driver).executeScript("return document.querySelector('.search').shadowRoot");
-//			WebElement ele = outer.findElement(By.xpath("//input"));
-			return ele;
-		}
-		
-		public Boolean AccessShadowRootElement() {
-			WebElement root = driver.findElement(By.tagName("ptcs-textfield"));
-//			WebElement ele = (WebElement) ((JavascriptExecutor) driver).executeScript("return arguments[0].shadowRoot", root);
-			WebElement ele2 = (WebElement) ((JavascriptExecutor) driver).executeScript("return document.querySelector('ptcs-textfield[placeholder=\"Find Projects\"]').shadowRoot.querySelector('input')");
-//			WebElement ele1 =  ele2.findElement(By.tagName("input"));
-			ele2.sendKeys("Top");
-			
-			return true;
-		}
+
+		return true;
+	}
 }

@@ -65,7 +65,7 @@ public class CSVReaderImpl {
 		//Config settings
 		final ConfigurationManager configManager = ConfigurationManager
 				.getInstance();
-		System.out.println("@@@@@@@@@@@@@ csv reader fetch env user dir path: "+System.getProperty("user.dir"));
+		System.out.println(this.getClass().getSimpleName()+"@ user dir path: "+System.getProperty("user.dir"));
 		configManager.setConfigPath(System.getProperty("user.dir")
 				+ File.separator + "integrity-ui-automation.properties");
 		final Configuration config = configManager.getConfig();
@@ -294,7 +294,6 @@ public class CSVReaderImpl {
 
 						if(config.getBoolean("ui.automation.execution.jar")==true){
 							String[] arrSteps = steps[7].split("resources");
-							System.out.println("#@#@#@#@ user dir path in csvreader" +System.getProperty("user.dir"));
 							steps[7]=System.getProperty("user.dir")+File.separator+arrSteps[1];
 						}
 						testCase.setWorkBookPath(steps[7]);
@@ -357,8 +356,6 @@ public class CSVReaderImpl {
 							.separatorsToSystem(System.getProperty("user.dir")+File.separator+"integrity-ui-automation"
 									+ "\\integrity-ui-automation-tests\\src\\main\\resources\\");
 				}
-//				System.out.println("########## csvreadre user dir path"+ System.getProperty("user.dir"));
-//				baseResourceDir = System.getProperty("user.dir")+File.separator+"\\integrity-ui-automation\\integrity-ui-automation-tests\\src\\main\\resources\\";
 				csvPath = FilenameUtils.separatorsToSystem(baseResourceDir
 						+ "Testcases" + File.separatorChar + folderName
 						+ File.separatorChar + FilenameUtils.getName(csvPath));

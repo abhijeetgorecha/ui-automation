@@ -118,7 +118,7 @@ public class HomePage extends PageObjectBase {
 	 * @return the boolean
 	 */
 	public Boolean SearchProject() {
-		getCommonFunctions().AccessShadowRootElement();
+		getCommonFunctions().AccessShadowRootElement("","");
 		return true;
 	}
 }

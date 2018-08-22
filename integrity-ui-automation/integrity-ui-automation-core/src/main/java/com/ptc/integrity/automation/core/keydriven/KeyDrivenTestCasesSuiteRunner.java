@@ -258,14 +258,6 @@ public class KeyDrivenTestCasesSuiteRunner extends KeyDrivenTestingSuiteBase {
 
 		final boolean testResultStatus = engine.executeTest(testCase,
 				getPageObjectFactory());
-
-		// after test
-		//		if(testResultStatus==false){
-		//			reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Failed" , "Fail");
-		//			}
-		//			else{
-		//				reporterCache.get(testCase.getTestCaseName()).fnWriteToHtmlOutput("TestCase","Test case should gets pass","Test case Passed" , "Pass");	
-		//			}
 		afterTest(testResultStatus,testCase.getTestCaseName());
 
 	}

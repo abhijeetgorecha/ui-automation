@@ -50,21 +50,9 @@ public class FTLUtility {
 		try {
 			// Build the data-model
 			Map<String, Object> data = new HashMap<String, Object>();
-			// final CSVReaderImpl excelReader = new
-			// CSVReaderImpl(config.getString(KeywordDrivenConstant.DRIVER_SHEET_PATH),
-			// config.getString(KeywordDrivenConstant.ENVIRONMENT_SHEET_PATH));
 
 			String driverPath = null;
-			// if (config.getBoolean("ui.mode.remoteMode")) {
-			// driverPath = config.getString("ui.automation.root.path")
-			// + File.separator+"TestSuite"+File.separator+
-			// System.getProperty("suiteName")
-			// + ".csv";
-			// } else {
-			// driverPath = config
-			// .getString(KeywordDrivenConstant.DRIVER_SHEET_PATH);
-			// }
-			
+		
 			if (System.getProperty("suiteName") == null
 					|| (System.getProperty("suiteName")).length() == 0) {
 				driverPath = config
@@ -77,7 +65,7 @@ public class FTLUtility {
 			final CSVReaderImpl csvReader = new CSVReaderImpl(
 					driverPath,
 					config.getString(KeywordDrivenConstant.ENVIRONMENT_SHEET_PATH));
-			// /////////
+
 			template = cfg.getTemplate("runner.ftl");
 
 			// get driver object which contains all the test cases .

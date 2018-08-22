@@ -21,7 +21,6 @@ public class IntegrityAutomationConstant {
 	public static final String DESCRIPTION = "DESCRIPTION";
 	public static final String ROOTPATH = "ROOTPATH";
 	public static final String EXECUTIONFOLDERPATH = "EXECUTIONFOLDERPATH";
-	public static final String REFERENTIALJSON = "REFERENTIALJSON";
 	public static final String STATICJSONPATH = "STATICJSONPATH";
 	public static final String CHROME = "CHROME";
 	public static final String FIREFOX = "FIREFOX";
